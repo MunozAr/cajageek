@@ -1,0 +1,106 @@
+<?php 
+session_start();
+
+// Obligatorios
+include '../common/config.php';
+include '../functions/functions.php';
+require '../post/post.php';//Si se va a trabajar con envio de datos.
+require_once '../models/general.class.php';// clases general query
+$gen = new generalQuery(); 
+require_once '../models/view.class.php';// clase que genera las vistas 
+require_once '../models/modules.class.php';// 
+require '../models/login.class.php';// clases login
+include '../common/login_validate.php';// archivo que valida la sesion de usuario
+include '../common/theme.php';// archivo que actualiza el tema.
+
+
+// Inicia objeto de clase
+$obj = new MI_CLASE(); 
+
+//Datos Generales x Archivo
+$type_sys = SYS;
+$htmlTitulo = '';
+
+
+// Inicializa variable.
+$hidden = '';
+$block = '';
+$visible = '';
+$msg = '';
+
+
+
+//Cantidad de registros por página
+    $limit = 5;
+
+##########################  MENU  ######################################
+
+    // $htmlMenu = file_get_contents($moduleMenu);
+    // Variables comúnes
+    $hidden = 'hidden';
+    $block = 'block';
+    $body = 'block';
+
+
+    //SUPERADMIN 
+    # Menu
+    $usuario_visible = 
+    $empresa_visible = 
+    $servicio_visible = 
+    $proyecto_visible = 
+    $cliente_visible = 
+    $insumo_visible = 
+    $seguimiento_visible =  
+    $tarea_visible = 'block';
+
+
+    $arg_btn_home = array(
+        //array('icono','titulo','link','hidden/block')
+         array('user'  ,'Usuarios'   ,'usuario.php'    ,$usuario_visible)
+        ,array('fire'  ,'Empresa'    ,'empresa.php'    ,$empresa_visible)
+        ,array('bell'  ,'Servicios'  ,'servicio.php'   ,$servicio_visible)
+        ,array('list'  ,'Proyectos'  ,'proyecto.php'   ,$proyecto_visible)
+        ,array('star'  ,'Clientes'   ,'cliente.php'    ,$cliente_visible)
+        ,array('cloud' ,'Insumos'    ,'insumo.php'     ,$insumo_visible)
+        ,array('search','Seguimiento','seguimiento.php',$seguimiento_visible)
+        ,array('book'  ,'Tareas'     ,'tarea.php'      ,$tarea_visible)
+    );
+
+    #menu
+    $htmlMenu = menu_view($arg_btn_home);
+##########################  FIN-MENU  ##################################
+
+
+
+
+// @Section :> Eventos de BD: update,delete,insert | todas las vistas
+
+    #Implementar
+
+// @Fin-Section
+
+
+// @Section :> Eventos de BD: select y otros | vistas externa
+
+    #Implementar
+
+// @Fin-Section
+
+
+// @Section :> Eventos de BD: select y otros casos generales/globales | todas las vistas
+
+    #Implementar
+
+// @Fin-Section
+
+
+// @Section :>  Eventos de BD: select y otros que ejecutan por encima de otros($btn_op_2) | todas las vistas
+
+    #Implementar
+
+// @Fin-Section
+
+
+
+
+?>

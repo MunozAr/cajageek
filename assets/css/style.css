@@ -1,0 +1,292 @@
+/*General Settiings*/
+.np {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+header {
+    position: relative;
+    background-color: black;
+  }
+
+
+/*--------Header-------*/
+
+.header-title {
+    font-family: 'muli_bold';
+    color: #232323;
+    font-size: 16px;
+    padding-left: 5px;
+    line-height: 46px;
+    transition:0.6s all;
+}
+
+.header-titlechange {
+    font-family: 'muli_bold';
+    color: #BEA064;
+    font-size: 16px;
+    padding-left: 5px;
+    line-height: 46px;
+    transition:0.6s all;
+}
+
+
+.nav {
+    width: 100%;
+}
+
+.nav ul {
+    list-style: none;
+    text-decoration: none;
+    padding: 0px;
+    width: 100%;
+    margin: 0;
+}
+
+.nav ul li {
+    text-decoration: none;
+    float: left;
+    height: 46px;
+    padding-left: 15px;
+    line-height: 46px;
+}
+
+.nav ul li a {
+    font-size: 15px;
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: 0.4s all;
+
+}
+
+.nav ul li a:hover,
+.nav ul li a:focus {
+    text-decoration: none;
+    color: gray;
+    font-size: 15px;
+}
+
+.header-color {
+    background-color: black !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: 0.4s all;
+    position: relative;
+    width: 100%;
+    z-index: 999;
+    transition: 0.6s all;
+}
+
+.headercolorc {
+    background-color: black !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: 0.4s all;
+    position: fixed;
+    width: 100%;
+    z-index: 997;
+    transition: 0.6s all;
+}
+
+.btnFormEstablecimientos {
+    color: white;
+    font-family: 'muli_semibold';
+    font-size: 11px;
+    padding: 10px 10px 10px 10px;
+    background-color: gray;
+    border-radius: 20px;
+    box-shadow: #232323;
+}
+
+.ul-spacei {
+    width: 100%;
+}
+
+.ul-spaced li {
+    float: right !important;
+}
+
+.btnFormEstablecimientos:hover,.btnFormEstablecimientos:focus{
+    text-decoration: none;
+    color: white !important;
+    font-size: 15px;
+}
+
+
+.bte1:hover .spn2
+{
+
+transition: all 0.5s;
+
+/*margin-top: 13px;
+    margin-bottom: 13px;*/
+
+}
+
+.bte2{
+width: 60px;
+height: 30px;
+padding: 0px 0px 0px 26px;
+background-color: transparent;
+border: 0px;
+box-shadow: 0px 0px 0px transparent;
+transition: all 0.3s;
+outline: none;
+float: right;
+margin-top:13px;
+}
+
+/*movil*/
+.spn12{
+    height: 5px;
+    background-color: gray;
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    bottom: 0px;
+    border-radius: 100px;
+    }
+
+    .spn22{
+    height: 5px;
+    background-color: gray;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+    position: relative;
+    transition: all 0.3s;
+    border-radius: 100px;
+
+    }
+
+    .spn32{
+    height: 5px;
+    background-color: gray;
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    top: 0px;
+    border-radius: 100px;
+    }
+
+    .spn42{
+    height: 5px;
+    background-color: gray;
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    bottom: 15px;
+    opacity: 0;
+    transform: rotate(45deg);
+    border-radius: 100px;
+    }
+    .spn62{
+    height: 5px;
+    background-color: gray;
+    display: block;
+    position: relative;
+    transition: all 0.3s;
+    top: -20px;
+    opacity: 0;
+    transform: rotate(-45deg);
+    border-radius: 100px;
+    }
+
+    #subheader{
+    background-color: white;
+    position: fixed;
+    top: 0;
+    z-index: 998;
+    margin-right: -6000px;
+    transition: 0.5s all;
+    width: 75%;
+    right: 0;
+    }
+
+    .subnav-mobile{
+    list-style: none;
+    text-decoration: none;
+    padding: 65px 5px 25px 5px;
+    margin: 0;
+    width: 100%;
+    height: 1200px;
+    }
+    .subnav-mobile  li {
+        text-decoration: none;
+        height: 46px;
+        padding-left: 15px;
+        line-height: 46px;
+        text-align: center
+    }
+
+    .subnav-mobile  li a {
+        font-size: 18px;
+        text-decoration: none;
+        color: #232323;
+        transition: 0.4s all;
+
+    }
+
+    .subnav-mobile  li a:hover,
+    .subnav-mobile  li a:focus {
+        text-decoration: none;
+        color: #BEA064;
+        font-size: 18px;
+    }
+
+
+/*Home*/
+.navCategories .slick-prev{
+    background-image: url('../img/inicio/cajageek_leftarrow.png') !important;
+    left: 15px;
+    height:24px;
+    width: 24px;
+    z-index: 999;
+  }
+  .navCategories .slick-prev:before{
+    content: ' ';
+  }
+  
+  .navCategories .slick-next{
+    background-image: url('../img/inicio/cajageek_rigtharrow.png') !important;
+    right: 15px;
+    height:24px;
+    width: 24px;
+    z-index: 999;
+  }
+  .navCategories .slick-next:before{
+    content: ' ';
+  }
+  #navSelector{
+      margin-top: 50px;
+  }
+
+
+  /*Producto detalle*/
+  .gallery-wrap .img-big-wrap img {
+    height: 450px;
+    width: auto;
+    display: inline-block;
+    cursor: zoom-in;
+}
+
+
+.gallery-wrap .img-small-wrap .item-gallery {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin: 7px 2px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.gallery-wrap .img-small-wrap {
+    text-align: center;
+}
+.gallery-wrap .img-small-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: zoom-in;
+}
