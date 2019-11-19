@@ -74,8 +74,8 @@ class generalQuery extends ConexionBD
         $countArrConditional = count($arg['conditional']);
         $countArrOrder = count($arg['order']);
         $countArrLimit = count($arg['limit']);
-        $countArrFields = count ($arg['fields']);
-        $countArrOperation = count ($arg['operation']);
+        $countArrFields = count($arg['fields']);
+        $countArrOperation = count($arg['operation']);
 
         $firstTable = '';
         $innerTables = '';
@@ -102,6 +102,7 @@ class generalQuery extends ConexionBD
         }
 
         // Armamos string para los inner join del query
+        $cont = 0;
         if($countArrTables>0){
             for($i=0;$i<$countArrTables;$i++){
                 $cont = $cont+1;
@@ -126,6 +127,7 @@ class generalQuery extends ConexionBD
 
         // Armamos string para las condicionales (where) del query
         if($countArrConditional>0){
+            $conditionalTables = '';
             for($f=0;$f<$countArrConditional;$f++){
                 if($arg['conditional'][$f][0]==''){
                     $ini = '';
@@ -139,6 +141,8 @@ class generalQuery extends ConexionBD
         }
 
         //Armamos para ordenar(order,limit,offset)
+        $orderTable = '';
+        $limitTable = '';
         for($g=0;$g<$countArrOrder;$g++){
             $orderTable .= ' '.$arg['order'][$g][0].' '.$arg['order'][$g][1].' '.$arg['order'][$g][2];
         }
@@ -387,6 +391,15 @@ class generalQuery extends ConexionBD
 		$rpta = $result->execute();
 
         return $rpta;
+    }
+    
+    public function getDataToCategory($id)
+	{
+		$queryDataToCategory = 'call sp_select_getdatatocategory('.$id.')';
+		$result = $this->conectBD()->prepare($queryDataToCategory);
+		$result->execute();
+		$call = $result->fetchAll();
+		return $call;
 	}
 
 //Fin

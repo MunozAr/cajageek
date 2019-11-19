@@ -1,6 +1,6 @@
 <?php
 
-    class Proyecto extends View
+    class Datos extends View
     {
 
         //TABLAS
@@ -414,6 +414,117 @@
             return $fields;
 
         }
+
+        #10
+        public function getCategories()
+        {
+
+            $arg = array(
+                'tables'=>array(
+                    array('categorias','c')
+                    ),
+                'relation'=>array(),
+                'order'=>array(),
+                'limit'=>array(),
+                'fields'=>array(),
+                'operation'=>array(),
+                'conditional' => array(
+                    array('','c.categoria_activo','=',1)
+                    )
+                );
+
+            $this->setSelectArg($arg);
+            $result = $this->selectData();
+
+            $countResult = count($result);
+            $arrayCategoryComponent = array();
+            for($i = 0; $i < $countResult; $i++){
+                $categoryComponent = '
+                <div class="categoriaDetalle col-12">
+                    <div class="col-12">
+                        <a href="inicio.php?categoria='.$result[$i]['categoria_nombre'].'&id='.$result[$i]['categoria_id'].'">
+                            <img src="'.$result[$i]['categoria_foto'].'" alt="'.$result[$i]['categoria_detalle'].'">
+                            <h1>'.$result[$i]['categoria_nombre'].'</h1>
+                        </a>
+                    </div>
+                </div>
+                ';
+                array_push($arrayCategoryComponent,$categoryComponent);
+            }
+
+            return $arrayCategoryComponent;
+        }
+
+        #11
+         #10
+         public function getTipos()
+         {
+ 
+             $arg = array(
+                 'tables'=>array(
+                     array('tipos','t')
+                     ),
+                 'relation'=>array(),
+                 'order'=>array(),
+                 'limit'=>array(),
+                 'fields'=>array(),
+                 'operation'=>array(),
+                 'conditional' => array(
+                     array('','t.tipo_activo','=',1)
+                     )
+                 );
+ 
+             $this->setSelectArg($arg);
+             $result = $this->selectData();
+ 
+             return $result;
+         }
+
+        #12
+        public function getDataToCategories($categoria_id){
+            $datos = $this->getCategoryData($categoria_id);
+            $tipos = $this->getTipos();
+            $countTipos = count($tipos);
+            $countDatos = count($datos);
+            $textoTipo = '';
+            $arrayEstructura = array();
+   
+                            $Item = '
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                <a href="producto.php?name='.$datos[$j]['producto_nombre'].'">
+                                    <div class="card">
+                                        <img class="card-img" src="'.$datos[$j]['producto_foto'].'" alt="'.$datos[$j]['producto_nombre'].' - CajaGeek">
+                                        <div class="card-body">
+                                            <h4 class="card-title">
+                                            '.$datos[$j]['producto_nombre'].'
+                                            </h4>
+                                            <h6 class="card-subtitle mb-2 text-muted">
+                                                Identificador: '.$datos[$j]['producto_identificador'].'
+                                            </h6>
+                                            <p class="card-text">
+                                                
+                                            </p>
+                                            <div class="buy d-flex justify-content-between align-items-center">
+                                                <div class="price text-success">
+                                                    <h5 class="mt-4">
+                                                        Desde: S/'.$datos[$j]['producto_precio'].'
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            ';
+                            
+                                foreach($tipos as $row){
+                                    
+                                };
+
+            return $arrayEstructura;
+        }
+
+
 
     }
 

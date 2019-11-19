@@ -466,7 +466,12 @@ class View extends generalQuery{
     
         return $result;
     }
-  
+    
+    public function getCategoryData($categoria_id)
+    {
+        $data = $this->getDataToCategory($categoria_id);
+        return $data;
+    }
 }
 
 ?>
