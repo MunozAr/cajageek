@@ -1,85 +1,79 @@
 
 <div class="container">
-<h1>
-    <?= $nameProducto; ?>
-</h1>
+
 <hr>
 
 	
 <div class="card">
 	<div class="row">
 		<aside class="col-sm-5 border-right">
-<article class="gallery-wrap"> 
-<div class="img-big-wrap">
-  <div> <a href="#"><img src="https://craftvan.com/5171-large_default/taza-ceramica-magica-negra-mate-con-caja.jpg"></a></div>
-</div> <!-- slider-product.// -->
-<div class="img-small-wrap">
-  <div class="item-gallery"> <img src="https://craftvan.com/5171-large_default/taza-ceramica-magica-negra-mate-con-caja.jpg"> </div>
-  <div class="item-gallery"> <img src="https://craftvan.com/5171-large_default/taza-ceramica-magica-negra-mate-con-caja.jpg"> </div>
-  <div class="item-gallery"> <img src="https://craftvan.com/5171-large_default/taza-ceramica-magica-negra-mate-con-caja.jpg"> </div>
-  <div class="item-gallery"> <img src="https://craftvan.com/5171-large_default/taza-ceramica-magica-negra-mate-con-caja.jpg"> </div>
-</div> <!-- slider-nav.// -->
-</article> <!-- gallery-wrap .end// -->
+
+<div class="swiper-container gallery-top">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+  </div>
+  <div class="swiper-container gallery-thumbs">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
+    </div>
+  </div>
+
 		</aside>
 		<aside class="col-sm-7">
 <article class="card-body p-5">
-	<h3 class="title mb-3">Original Version of Some product name</h3>
+	<h3 class="title mb-3"><?= $nameProducto; ?></h3>
 
 <p class="price-detail-wrap"> 
 	<span class="price h3 text-warning"> 
-		<span class="currency">US $</span><span class="num">1299</span>
+		<span class="currency">S/. </span><span class="num"><?= $preciosProducto[0] ?></span>
 	</span> 
-	<span>/per kg</span> 
+	<span>/por unidad</span> 
 </p> <!-- price-detail-wrap .// -->
 <dl class="item-property">
-  <dt>Description</dt>
-  <dd><p>Here goes description consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco </p></dd>
+  <dt>Descripción</dt>
+  <dd><p><?= $descripcionDetalle; ?></p></dd>
 </dl>
 <dl class="param param-feature">
-  <dt>Model#</dt>
-  <dd>12345611</dd>
+  <dt>Modelo</dt>
+  <dd><?= $identificadorProducto; ?></dd>
 </dl>  <!-- item-property-hor .// -->
-<dl class="param param-feature">
-  <dt>Color</dt>
-  <dd>Black and white</dd>
+<dl class="product-colors">
+  <?= $tituloColores; ?>
+  <dd>
+	<?= $color; ?>
+  </dd>
 </dl>  <!-- item-property-hor .// -->
 <dl class="param param-feature">
   <dt>Delivery</dt>
-  <dd>Russia, USA, and Europe</dd>
+  <dd>San Miguel</dd>
 </dl>  <!-- item-property-hor .// -->
 
 <hr>
 	<div class="row">
 		<div class="col-sm-5">
 			<dl class="param param-inline">
-			  <dt>Quantity: </dt>
+			  <dt>Cantidad: </dt>
 			  <dd>
 			  	<select class="form-control form-control-sm" style="width:70px;">
 			  		<option> 1 </option>
 			  		<option> 2 </option>
 			  		<option> 3 </option>
+					<option> 4 </option>
 			  	</select>
 			  </dd>
 			</dl>  <!-- item-property .// -->
 		</div> <!-- col.// -->
 		<div class="col-sm-7">
-			<dl class="param param-inline">
-				  <dt>Size: </dt>
+			<dl class="product-sizes">
+				<?= $tituloTamano; ?>
 				  <dd>
-				  	<label class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <span class="form-check-label">SM</span>
-					</label>
-					<label class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <span class="form-check-label">MD</span>
-					</label>
-					<label class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <span class="form-check-label">XXL</span>
-					</label>
+				  	<?= $tamano; ?>
 				  </dd>
 			</dl>  <!-- item-property .// -->
 		</div> <!-- col.// -->
@@ -95,3 +89,27 @@ quis nostrud exercitation ullamco </p></dd>
 
 </div>
 <!--container.//-->
+
+<script>
+	<?= $scriptColor; ?>
+	<?= $scriptTamano; ?>
+</script>
+<script>
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+    });
+    var galleryTop = new Swiper('.gallery-top', {
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      thumbs: {
+        swiper: galleryThumbs
+      }
+    });
+  </script>

@@ -484,14 +484,33 @@
         public function getDataToCategories($categoria_id){
             $datos = $this->getCategoryData($categoria_id);
             $tipos = $this->getTipos();
-            $countTipos = count($tipos);
             $countDatos = count($datos);
             $textoTipo = '';
             $arrayEstructura = array();
-   
-                            $Item = '
+            foreach($tipos as $row){
+               $data = array(
+                   'datos' => array(
+                       'id' => $row['tipo_id'],
+                       'titulo_tipo' => '
+                       <div class="col-12">
+                           <h1>
+                               '.$row['tipo_nombre'].'
+                           </h1>
+                       </div>
+                       '
+                   ),
+                   'componentes'=> array()
+               );
+               array_push( $arrayEstructura, $data);
+            }
+            $countEstructura = count($arrayEstructura);
+            //print_r($arrayEstructura);
+            for($i = 0; $i < $countEstructura; $i++){
+                for($j = 0; $j < $countDatos; $j++){
+                    if($arrayEstructura[$i]['datos']['id'] == $datos[$j]['tipo_id']){
+                             $Item = '
                             <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                                <a href="producto.php?name='.$datos[$j]['producto_nombre'].'">
+                                <a href="producto.php?name='.$datos[$j]['producto_nombre'].'&id='.$datos[$j]['producto_id'].'&identifier='.$datos[$j]['producto_identificador'].'">
                                     <div class="card">
                                         <img class="card-img" src="'.$datos[$j]['producto_foto'].'" alt="'.$datos[$j]['producto_nombre'].' - CajaGeek">
                                         <div class="card-body">
@@ -516,12 +535,36 @@
                                 </a>
                             </div>
                             ';
-                            
-                                foreach($tipos as $row){
-                                    
-                                };
+                            array_push($arrayEstructura[$i]['componentes'],$Item);
+                    }   
+                }
+            }
 
             return $arrayEstructura;
+        }
+
+        #10
+        public function productoxId($id)
+        {
+
+            $arg = array(
+                'relation'=>array(),
+                 'order'=>array(),
+                 'limit'=>array(),
+                 'fields'=>array(),
+                 'operation'=>array(),
+                'tables'=>array(
+                    array('producto_detalle','p')
+                    ),
+                'conditional' => array(
+                    array('','p.producto_id','=',$id)
+                    )
+                );
+
+            $this->setSelectArg($arg);
+            $result = $this->selectData();
+
+            return $result;
         }
 
 

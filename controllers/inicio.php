@@ -11,18 +11,33 @@ if(isset($_GET['categoria']) && isset($_GET['id'])){
     $categoryName = $_GET['categoria'];
     $categoryId = (int)$_GET['id'];
     $arrayDataToCategory = $datos->getDataToCategories($categoryId);
-    print_r($arrayDataToCategory);
+    $tituloTipo = '';
+    $estructuraTiposPorCategoria  = '';
+    $estructuraComponentes  = '';
+    foreach($arrayDataToCategory as $row){
+        if($row['componentes'] != null){ 
+            $tituloTipo = $row['datos']['titulo_tipo'];
+            $estructuraComponentes = '';
+            foreach($row['componentes'] as $componente){
+                $estructuraComponentes .= $componente;
+            }
+            $estructuraTiposPorCategoria .= $tituloTipo.$estructuraComponentes;
+        }
+    }
+   
 }else{
     $categoryName = '';
     $categoryId = '';
+    $estructuraTiposPorCategoria = '';
 }
 
 $arrayCategorias = $datos->getCategories();
-$countCategorias = count($arrayCategorias);
-$categoria  = '';
-for($i=0; $i<$countCategorias;$i++){
-    $categoria .= $arrayCategorias[$i];
+$categoriaComponente  = '';
+foreach($arrayCategorias as $categoria){
+    $categoriaComponente .= $categoria;
 }
+
+
 
 
 

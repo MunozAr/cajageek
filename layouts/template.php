@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="assets/css/slick.css"/>
   <link rel="stylesheet" href="assets/css/slick-theme.css"/>
+  <link rel="stylesheet" href="assets/css/swiper.min.css"/>
   <link rel="stylesheet" href="assets/css/style.css"/>
   
   <script src="assets/js/jquery.min.js"></script>   
@@ -26,6 +27,7 @@
   <!-- development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="assets/js/slick.min.js"></script>
+  <script src="assets/js/swiper.min.js"></script>
 
 </head>
 <body>

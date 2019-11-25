@@ -1,5 +1,5 @@
 <div class="navCategories col-12">
-    <?= $categoria; ?>
+    <?= $categoriaComponente; ?>
 </div>
 <div id="navSelector" class="row no-gutters">
     <div class="col-12">
@@ -11,31 +11,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                <a href="producto.php?name=Datos%20del%20producto">
-                    <div class="card">
-                        <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/vans.png" alt="Vans">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                Titulo del producto
-                            </h4>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                Style: VA33TXRJ5
-                            </h6>
-                            <p class="card-text">
-                                The Vans All-Weather MTE Collection features footwear and apparel designed to withstand the elements whilst still looking cool.
-                            </p>
-                            <div class="buy d-flex justify-content-between align-items-center">
-                                <div class="price text-success">
-                                    <h5 class="mt-4">
-                                        $125
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <?= $estructuraTiposPorCategoria; ?>
         </div>
     </div>
 </div>
@@ -82,4 +58,5 @@ var navSelector = new Vue({
         products : []
     }
 });
+
 </script>

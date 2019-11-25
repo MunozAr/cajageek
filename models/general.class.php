@@ -398,7 +398,7 @@ class generalQuery extends ConexionBD
 		$queryDataToCategory = 'call sp_select_getdatatocategory('.$id.')';
 		$result = $this->conectBD()->prepare($queryDataToCategory);
 		$result->execute();
-		$call = $result->fetchAll();
+        $call = $result->fetchAll();
 		return $call;
 	}
 
