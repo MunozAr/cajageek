@@ -509,10 +509,10 @@
                 for($j = 0; $j < $countDatos; $j++){
                     if($arrayEstructura[$i]['datos']['id'] == $datos[$j]['tipo_id']){
                              $Item = '
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 tamanoShowProducto">
                                 <a href="producto.php?name='.$datos[$j]['producto_nombre'].'&id='.$datos[$j]['producto_id'].'&identifier='.$datos[$j]['producto_identificador'].'">
                                     <div class="card">
-                                        <img class="card-img" src="'.$datos[$j]['producto_foto'].'" alt="'.$datos[$j]['producto_nombre'].' - CajaGeek">
+                                        <img class="card-img" src="./assets/img/productos/'.$datos[$j]['producto_foto'].'" alt="'.$datos[$j]['producto_nombre'].' - CajaGeek">
                                         <div class="card-body">
                                             <h4 class="card-title">
                                             '.$datos[$j]['producto_nombre'].'

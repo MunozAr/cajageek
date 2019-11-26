@@ -13,8 +13,10 @@ if(isset($_GET['name'])){
     $coloresDetalle = $productoDetalle[0]['pdetalle_colores'];
     $tamanoDetalle = $productoDetalle[0]['pdetalle_tamanos'];
     $preciosDetalle = $productoDetalle[0]['pdetalle_precios'];
+    $fotosDetalle = $productoDetalle[0]['pdetalle_fotos'];
     $color  = '';
     $tamano = '';
+    $foto = '';
     $tituloColores = '';
     $scriptTamano = '';
     $scriptColor = '';
@@ -30,9 +32,10 @@ if(isset($_GET['name'])){
                 </label>
                 ';
                 $scriptTamano = '
-                $(".inputTamano").click(function(){
-                    var tamano =  "";
+                var tamano =  "";
                     var precio = "";
+                $(".inputTamano").click(function(){
+                    
                     if ($(this).is(":checked"))
                     {
                         tamano = $(this).val();
@@ -56,14 +59,23 @@ if(isset($_GET['name'])){
             ';
         }
         $scriptColor = '
+        var color =  "";
         $(".inputColor").click(function(){
-            var color =  "";
+            
             if ($(this).is(":checked"))
             {
                 color = $(this).val();
             }
         });
         ';
+    }
+    if($fotosDetalle){
+        $fotosProducto = explode(",", $fotosDetalle);
+        for($f = 0; $f <count($fotosProducto); $f++){
+            $foto .= '
+            <div class="swiper-slide" style="background-image:url(./assets/img/detalle/'.$fotosProducto[$f].')"></div>
+            ';
+        }
     }
 
 }else{

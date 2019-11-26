@@ -6,12 +6,11 @@
 	
 <div class="card">
 	<div class="row">
-		<aside class="col-sm-5 border-right">
+		<aside class="col-12 col-sm-12 col-md-12 col-lg-7 border-right">
 
 <div class="swiper-container gallery-top">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
-      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
+      <?= $foto; ?>
     </div>
     <!-- Add Arrows -->
     <div class="swiper-button-next swiper-button-white"></div>
@@ -19,13 +18,12 @@
   </div>
   <div class="swiper-container gallery-thumbs">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
-      <div class="swiper-slide" style="background-image:url(./assets/img/ejemplo.jpg)"></div>
+    <?= $foto; ?>
     </div>
   </div>
 
 		</aside>
-		<aside class="col-sm-7">
+		<aside class="col-12 col-sm-12 col-md-12 col-lg-5">
 <article class="card-body p-5">
 	<h3 class="title mb-3"><?= $nameProducto; ?></h3>
 
@@ -79,8 +77,7 @@
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
 	<hr>
-	<a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-	<a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+	<button id="btnComprar" class="btn btn-lg btn-outline-primary text-uppercase"> Comprar </button>
 </article> <!-- card-body.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->
@@ -93,6 +90,26 @@
 <script>
 	<?= $scriptColor; ?>
 	<?= $scriptTamano; ?>
+
+ 
+  $(function(){
+    $('#btnComprar').click(function(){
+    let datos={
+      color:'',
+      tamano:'',
+      precio:'',
+      modelo:'',
+      cantidad:'1',
+    };
+    datos.color = color;
+    datos.tamano = tamano;
+    datos.precio = precio;
+    datos.modelo = 'http://localhost/xampp/cajageek/assets/img/detalle/'+'<?= $fotosProducto[0]; ?>';
+    
+    textUrl = 'https://wa.me/5211234567890?text=Color:'+datos.color+' Tamaño:'+datos.tamano+' Precio:'+datos.precio+' Producto:'+datos.modelo+' Cantidad:'+datos.cantidad;
+    window.open(textUrl,'Comprar');
+  });
+  });
 </script>
 <script>
     var galleryThumbs = new Swiper('.gallery-thumbs', {
