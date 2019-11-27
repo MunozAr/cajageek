@@ -442,8 +442,8 @@
                 $categoryComponent = '
                 <div class="categoriaDetalle col-12">
                     <div class="col-12">
-                        <a href="inicio.php?categoria='.$result[$i]['categoria_nombre'].'&id='.$result[$i]['categoria_id'].'">
-                            <img src="'.$result[$i]['categoria_foto'].'" alt="'.$result[$i]['categoria_detalle'].'">
+                        <a href="categorias.php?categoria='.$result[$i]['categoria_nombre'].'&id='.$result[$i]['categoria_id'].'">
+                            <img src="assets/img/categorias/'.$result[$i]['categoria_foto'].'" alt="'.$result[$i]['categoria_detalle'].'">
                             <h1>'.$result[$i]['categoria_nombre'].'</h1>
                         </a>
                     </div>
@@ -567,6 +567,11 @@
             return $result;
         }
 
+        public function getAllProduct($limit,$offset)
+        {
+            $result = $this->get_AllProducts($limit,$offset);
+            return $result;
+        }
 
 
     }

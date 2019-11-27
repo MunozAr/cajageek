@@ -1,5 +1,4 @@
 <?php 
-require_once './common/config.php';
 require_once './models/general.class.php';
 require_once './models/view.class.php';
 require_once './models/modules.class.php';
@@ -38,8 +37,8 @@ if(isset($_GET['name'])){
                     
                     if ($(this).is(":checked"))
                     {
-                        tamano = $(this).val();
-                        precio = $(this).attr("data-tamano-precio");
+                        datos.tamano = $(this).val();
+                        datos.precio = $(this).attr("data-tamano-precio");
                         $(".num").text(precio);
                     }
                 });
@@ -64,7 +63,7 @@ if(isset($_GET['name'])){
             
             if ($(this).is(":checked"))
             {
-                color = $(this).val();
+                datos.color = $(this).val();
             }
         });
         ';

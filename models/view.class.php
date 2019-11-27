@@ -472,6 +472,12 @@ class View extends generalQuery{
         $data = $this->getDataToCategory($categoria_id);
         return $data;
     }
+
+    public function get_AllProducts($limit,$offset)
+    {
+        $data = $this->getAllProducts($limit,$offset);
+        return $data;
+    }
 }
 
 ?>

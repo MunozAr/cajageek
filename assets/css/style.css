@@ -380,6 +380,15 @@ input {
     --swiper-navigation-color: #232323;
 }
 
+.card{
+    height: 450px;
+}
+
+/*Lazy Loading*/
+.loading { color: green; }
+li {font-size:20px;}
+#loading { display:none; color:green; font-size:20px; }
+
   @media (min-width:320px){
     .gallery-top {
         position: relative;
@@ -394,6 +403,8 @@ input {
       .tamanoShowProducto{
         max-width: 320px;
         margin: auto;
+        margin-top: 20px;
+        padding: 0px 10px;
       }
   }
   @media (min-width:768px){
@@ -401,7 +412,7 @@ input {
         height: 140px;
     }
     .tamanoShowProducto{
-        margin: initial;
+        margin: 20px 0px 0px 0px;
       }
   }
   

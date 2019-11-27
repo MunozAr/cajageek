@@ -58,11 +58,12 @@
 			<dl class="param param-inline">
 			  <dt>Cantidad: </dt>
 			  <dd>
-			  	<select class="form-control form-control-sm" style="width:70px;">
+			  	<select id="selectCantidad" class="form-control form-control-sm" style="width:135px;" required>
+            <option selected disabled> Elija la cantidad </option>
 			  		<option> 1 </option>
 			  		<option> 2 </option>
 			  		<option> 3 </option>
-					<option> 4 </option>
+					  <option> 4 </option>
 			  	</select>
 			  </dd>
 			</dl>  <!-- item-property .// -->
@@ -88,45 +89,66 @@
 <!--container.//-->
 
 <script>
-	<?= $scriptColor; ?>
-	<?= $scriptTamano; ?>
+	
 
  
   $(function(){
-    $('#btnComprar').click(function(){
     let datos={
-      color:'',
-      tamano:'',
-      precio:'',
-      modelo:'',
-      cantidad:'1',
-    };
-    datos.color = color;
-    datos.tamano = tamano;
-    datos.precio = precio;
-    datos.modelo = 'http://localhost/xampp/cajageek/assets/img/detalle/'+'<?= $fotosProducto[0]; ?>';
+        color:'None',
+        tamano:'',
+        precio:'',
+        modelo:'',
+        cantidad:'',
+      };
+      <?= $scriptColor; ?>
+	    <?= $scriptTamano; ?>
     
-    textUrl = 'https://wa.me/5211234567890?text=Color:'+datos.color+' Tamaño:'+datos.tamano+' Precio:'+datos.precio+' Producto:'+datos.modelo+' Cantidad:'+datos.cantidad;
-    window.open(textUrl,'Comprar');
-  });
+
+      $("select#selectCantidad").change(function(){
+        datos.cantidad = $(this).children("option:selected").val();
+        console.log(datos.cantidad);
+    });
+
+    $('#btnComprar').click(function(){
+      var enviar = true;
+      datos.modelo = 'http://localhost/xampp/cajageek/assets/img/detalle/'+'<?= $fotosProducto[0]; ?>';
+      
+      if(datos.tamano == ''){
+        enviar = false;
+        console.log('Tamano out');
+        return
+      }
+      if(datos.cantidad == ''){
+        enviar = false;
+        console.log('Cantidad out');
+        return;
+      }
+
+      if(enviar){
+        textUrl = 'https://wa.me/5211234567890?text=Color:'+datos.color+' Tamaño:'+datos.tamano+' Precio:'+datos.precio+' Producto:'+datos.modelo+' Cantidad:'+datos.cantidad;
+        window.open(textUrl,'Comprar');
+      }
+      
+      
+    });
   });
 </script>
 <script>
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
+    var galleryThumbsProductDetails = new Swiper('.gallery-thumbs', {
       spaceBetween: 10,
       slidesPerView: 4,
       freeMode: true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
     });
-    var galleryTop = new Swiper('.gallery-top', {
+    var galleryTopProductDetails = new Swiper('.gallery-top', {
       spaceBetween: 10,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
       thumbs: {
-        swiper: galleryThumbs
+        swiper: galleryThumbsProductDetails
       }
     });
   </script>

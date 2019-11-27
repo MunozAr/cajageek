@@ -400,6 +400,15 @@ class generalQuery extends ConexionBD
 		$result->execute();
         $call = $result->fetchAll();
 		return $call;
+    }
+    
+    public function getAllProducts($limit,$offset)
+	{
+		$queryAllProducts = 'call sp_get_allproducts('.$limit.','.$offset.')';
+		$result = $this->conectBD()->prepare($queryAllProducts);
+		$result->execute();
+        $call = $result->fetchAll();
+		return $call;
 	}
 
 //Fin
