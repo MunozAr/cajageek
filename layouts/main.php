@@ -1,1 +1,1 @@
-<div id="main"><?php include $view; ?></div>
+<div id="main" class="col-12"><?php include $view; ?></div>

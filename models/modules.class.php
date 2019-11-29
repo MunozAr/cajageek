@@ -573,6 +573,32 @@
             return $result;
         }
 
+        public function getProducts()
+        {
+
+            $arg = array(
+                'tables'=>array(
+                    array('productos','p')
+                    ),
+                'relation'=>array(),
+                'order'=>array(),
+                'limit'=>array(),
+                'fields'=>array(),
+                'operation'=>array(),
+                'conditional' => array(
+                    array('','p.producto_activo','=',1)
+                )
+                );
+
+            $this->setSelectArg($arg);
+            $result = $this->selectData();
+
+            return $result;
+        }
+
+
+        
+
 
     }
 

@@ -1,7 +1,7 @@
 <div class="navCategories col-12">
     <?= $categoriaComponente; ?>
 </div>
-<div id="navSelector" class="row no-gutters">
+<div id="navSelector">
     <div class="col-12">
         <div class="col-12 np text-center">
             <h1>
@@ -9,14 +9,78 @@
             </h1>
         </div>
     </div>
-    <div class="container">
-        <div id="load_data" class="row">
-            
-        </div>
-        <div class="col-12 text-center">
-              <span id="load_data_message">Loading Please wait...</span>
+    <div id="app" class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-5 col-md-3 col-lg-2">
+        <div class="card">
+          <article class="filter-group">
+            <header class="card-header">
+              <a href="#" data-toggle="collapse" data-target="#collapse_aside1">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Categories </h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_aside1">
+              <div class="card-body">
+                <form class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+                </form>
+                <div v-for ="type in typesList" :key="type.tipo_id" class="checkbox">
+                  <label>
+                    <input type="checkbox" :value="type.tipo_id" v-model="checkedType" >{{type.tipo_nombre}}
+                  </label>
+                </div>
+                <span>You have chosen: {{ checkedType }}</span>
+
+              </div> <!-- card-body.// -->
             </div>
+          </article> <!-- filter-group  .// -->
+          
+        </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+          <div class="row">
+              <div  class=" tamanoShowProducto" v-for="(producto,index) in filterProducts" v-if="index < productoToShow" :key="products[index].producto_id" >
+              <a v-bind:href="'producto.php?name='+products[index].producto_nombre+'&id='+products[index].producto_id+'&identifier='+products[index].producto_identificador">
+                    <div class="card product-card">
+                        <img class="card-img" v-bind:src="'./assets/img/productos/'+products[index].producto_foto" v-bind:alt="products[index].producto_nombre+' - Caja Geek' ">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                            {{ products[index].producto_nombre }}
+                            </h4>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Identificador: {{ products[index].producto_identificador }}
+                            </h6>
+                            <p class="card-text">
+                                
+                            </p>
+                            <div class="buy d-flex justify-content-between align-items-center">
+                                <div class="price text-success">
+                                    <h5 class="mt-4">
+                                        Desde: {{products[index].producto_precio}}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+              </div>
+              </div>
+              <div class="col-12 text-center">
+              <img v-if="!effectGif" width="45px;" src="./assets/img/inicio/loading.gif" alt="Loading GIF - Caja Geek">
+              <button @click="loadMore()" class="btn btn-danger" v-if="effectGif">Load more</button>
+              </div>
+          </div>
+          
+        </div>
+      </div>
     </div>
+    
     
 </div>
 
@@ -53,54 +117,60 @@ $('.navCategories').slick({
   }
 ]
 });
+var productos = new Vue({
+  el: '#app',
+  data(){
+    return{
+    products:[],
+    allProducts:[],
+    typesList:[],
+    checkedType:[],
+    productoToShow:10,
+    offset:0,
+    effectGif:true
+    }
+  },
+  mounted() {
+      // Solicitud POST
+      axios.post('module/get_allproducts.php', 
+          {todos:'todos'}
+        ).then(response => {
+          this.effectGif = false
+          setTimeout(() => {
+              this.products = response.data;
+              this.allProducts = response.data;
+              this.effectGif = true;
+            }, 500);
+      }).catch(e => {
+          console.log(e);
+      });
 
+      axios.post('module/get_allproducts.php',
+        {
+          solicitud:'tipos'
+        }).then(response => {
+          this.typesList = response.data
+        }).catch(e => {
+          console.log(e);
+        });
+  },
+  methods: {
+    loadMore(){
+      const cantidadProductos = this.products.length -this.productoToShow;
+      const cantidadAMostrar = this.products.length - this.productoToShow;
+      if(cantidadProductos<0)
+        this.productoToShow = this.productoToShow + cantidadAMostrar;
+        this.productoToShow += 10;
+     },
 
+  },
+  computed:{
+    filterProducts() {
+      if (!this.checkedType.length)
+       return this.products = this.allProducts
+      return this.products = this.products.filter(f => this.checkedType.includes(f.tipo_id));
+    },
+  }
 
-$(document).ready(function(){
-	
-	var limit = 5;
-	var offset = 0;
-	var action = 'inactive';
-	function load_country_data(limit, offset)
-	{
-		$.ajax({
-			url:"./module/get_allproducts.php",
-			method:"POST",
-			data:{limit:limit, offset:offset},
-			cache:false,
-			success:function(data)
-			{
-        console.log('Solicite');
-				$('#load_data').append(data);
-				if(data == '')
-				{
-					$('#load_data_message').html("<button type='button' class='btn btn-info'>No Data Found</button>");
-					action = 'active';
-				}
-				else
-				{
-					$('#load_data_message').html("<button type='button' class='btn btn-warning'>Please Wait....</button>");
-					action = "inactive";
-				}
-			}
-		});
-	}
-
-	if(action == 'inactive')
-	{
-		action = 'active';
-		load_country_data(limit, offset);
-	}
-	$(window).scroll(function(){
-		if($(window).scrollTop() + $(window).height() > $("#load_data").height() && action == 'inactive')
-		{
-			action = 'active';
-			offset = offset + limit;
-			setTimeout(function(){
-				load_country_data(limit, offset);
-			}, 1000);
-		}
-	});
-	
 });
 </script>

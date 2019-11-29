@@ -84,7 +84,7 @@ header {
     position: fixed;
     width: 100%;
     z-index: 997;
-    margin-top: -16px;
+    
     transition: 0.6s all;
 }
 
@@ -235,14 +235,34 @@ margin-top:13px;
         font-size: 18px;
     }
 
+/*Footer*/
+
+footer p{
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+}
+footer p a,footer p a:hover{
+    text-decoration: none;
+}
+#footer{
+
+    background-color: #232323;
+    padding: 10px 0px;
+    position: static;
+}
 
 /*Home*/
+.navCategories{
+    padding-top: 25px;
+}
 .navCategories .slick-prev{
     background-image: url('../img/inicio/cajageek_leftarrow.png') !important;
     left: 15px;
     height:24px;
     width: 24px;
-    z-index: 999;
+    z-index: 996;
   }
   .navCategories .slick-prev:before{
     content: ' ';
@@ -253,7 +273,7 @@ margin-top:13px;
     right: 15px;
     height:24px;
     width: 24px;
-    z-index: 999;
+    z-index: 996;
   }
   .navCategories .slick-next:before{
     content: ' ';
@@ -378,11 +398,15 @@ input {
   }
   .swiper-button-next.swiper-button-white, .swiper-button-prev.swiper-button-white {
     --swiper-navigation-color: #232323;
+    outline: none;
 }
 
-.card{
+.product-card{
     height: 450px;
 }
+
+
+
 
 /*Lazy Loading*/
 .loading { color: green; }
@@ -401,10 +425,13 @@ li {font-size:20px;}
         padding: 10px 0;
       }
       .tamanoShowProducto{
-        max-width: 320px;
+        width: 20%;
+        min-width: 260px;
         margin: auto;
         margin-top: 20px;
         padding: 0px 10px;
+        transition: 0.4s all;
+        float: left;
       }
   }
   @media (min-width:768px){
@@ -413,6 +440,19 @@ li {font-size:20px;}
     }
     .tamanoShowProducto{
         margin: 20px 0px 0px 0px;
+        width: 33.333%;
+        max-width: none;
+      }
+  }
+  @media (min-width:768px){
+    .gallery-thumbs {
+        height: 140px;
+    }
+    .tamanoShowProducto{
+        margin: 20px 0px 0px 0px;
+        width: 33.333%;
+        max-width: auto;
+        min-width: auto;
       }
   }
   
@@ -420,5 +460,20 @@ li {font-size:20px;}
     .gallery-top {
         height: 80%;
         width: 100%;
+      }
+      .tamanoShowProducto{
+        margin: 20px 0px 0px 0px;
+        width:  25%;
+        max-width: auto;
+        min-width: auto;
+      }
+  }
+  @media (min-width:1400px){
+
+      .tamanoShowProducto{
+        margin: 20px 0px 0px 0px;
+        width:  20%;
+        max-width: auto;
+        min-width: auto;
       }
   }

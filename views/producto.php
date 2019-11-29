@@ -2,9 +2,6 @@
 <div class="container">
 
 <hr>
-
-	
-<div class="card">
 	<div class="row">
 		<aside class="col-12 col-sm-12 col-md-12 col-lg-7 border-right">
 
@@ -82,7 +79,7 @@
 </article> <!-- card-body.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->
-</div> <!-- card.// -->
+
 
 
 </div>
