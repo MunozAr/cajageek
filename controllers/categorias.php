@@ -6,11 +6,15 @@ require_once './models/modules.class.php';
 
 $datos  = new Datos();
 
+$categoryName = '';
+$categoryId = '';
+$estructuraTiposPorCategoria = '';
 if(isset($_GET['categoria']) && isset($_GET['id'])){
     $categoryName = $_GET['categoria'];
     $categoryId = (int)$_GET['id'];
     $arrayDataToCategory = $datos->getDataToCategories($categoryId);
-    $tituloTipo = '';
+    $JSONproductosCategoria = json_encode($arrayDataToCategory,JSON_UNESCAPED_UNICODE);
+    /*$tituloTipo = '';
     $estructuraTiposPorCategoria  = '';
     $estructuraComponentes  = '';
     foreach($arrayDataToCategory as $row){
@@ -22,13 +26,7 @@ if(isset($_GET['categoria']) && isset($_GET['id'])){
             }
             $estructuraTiposPorCategoria .= $tituloTipo.$estructuraComponentes;
         }
-    }
-   
-}else{
-    $categoryName = '';
-    $categoryId = '';
-    $estructuraTiposPorCategoria = '';
-   // $randomProductos = $datos->getDataToCategories();
+    }*/
 }
 
 $arrayCategorias = $datos->getCategories();

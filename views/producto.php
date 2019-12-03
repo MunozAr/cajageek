@@ -26,7 +26,7 @@
 
 <p class="price-detail-wrap"> 
 	<span class="price h3 text-warning"> 
-		<span class="currency">S/. </span><span class="num"><?= $preciosProducto[0] ?></span>
+		<span class="currency">S/. </span><span id="num"><?= $preciosProducto[0] ?></span>
 	</span> 
 	<span>/por unidad</span> 
 </p> <!-- price-detail-wrap .// -->
@@ -88,11 +88,10 @@
 <script>
 	
 
- 
-  $(function(){
+
     let datos={
         color:'None',
-        tamano:'',
+        tamano:'None',
         precio:'',
         modelo:'',
         cantidad:'',
@@ -100,46 +99,49 @@
       <?= $scriptColor; ?>
 	    <?= $scriptTamano; ?>
     
-
-      $("select#selectCantidad").change(function(){
+      const selectElement = document.getElementById('selectCantidad');
+        selectElement.addEventListener('change', (event) => {
+            datos.cantidad = event.target.value;
+      });
+   /* $("select#selectCantidad").change(function(){
         datos.cantidad = $(this).children("option:selected").val();
         console.log(datos.cantidad);
-    });
+    });*/
 
-    $('#btnComprar').click(function(){
+      const btnComprar = document.getElementById('btnComprar');
+      btnComprar.addEventListener('click', (event) => {
       var enviar = true;
       datos.modelo = 'http://localhost/xampp/cajageek/assets/img/detalle/'+'<?= $fotosProducto[0]; ?>';
       
-      if(datos.tamano == ''){
-        enviar = false;
-        console.log('Tamano out');
-        return
-      }
-      if(datos.cantidad == ''){
-        enviar = false;
-        console.log('Cantidad out');
-        return;
-      }
+        if(datos.tamano == ''){
+          enviar = false;
+          console.log('Tamano out');
+          return
+        }
+        if(datos.cantidad == ''){
+          enviar = false;
+          console.log('Cantidad out');
+          return;
+        }
 
-      if(enviar){
-        textUrl = 'https://wa.me/5211234567890?text=Color:'+datos.color+' Tamaño:'+datos.tamano+' Precio:'+datos.precio+' Producto:'+datos.modelo+' Cantidad:'+datos.cantidad;
-        window.open(textUrl,'Comprar');
-      }
-      
-      
-    });
-  });
+        if(enviar){
+          textUrl = 'https://wa.me/5211234567890?text=Color:'+datos.color+' Tamaño:'+datos.tamano+' Precio:'+datos.precio+' Producto:'+datos.modelo+' Cantidad:'+datos.cantidad;
+          window.open(textUrl,'Comprar');
+        }
+      });
 </script>
 <script>
     var galleryThumbsProductDetails = new Swiper('.gallery-thumbs', {
       spaceBetween: 10,
       slidesPerView: 4,
       freeMode: true,
+      lazy:true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
     });
     var galleryTopProductDetails = new Swiper('.gallery-top', {
       spaceBetween: 10,
+      lazy:true,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',

@@ -25,23 +25,17 @@ if(isset($_GET['name'])){
         $preciosProducto = explode(",", $preciosDetalle);
         for($j = 0; $j <count($tamanosProducto); $j++){
             $tamano .= '
-                <input type="radio" id="tamano-'.$j.'" class="inputTamano" name="tamano-option" value="'.$tamanosProducto[$j].'" data-tamano-precio="'.$preciosProducto[$j].'">
+                <input type="radio" id="tamano-'.$j.'" class="inputTamano" name="tamano-option" onclick="handleTamano(this);"  value="'.$tamanosProducto[$j].'" data-tamanoprecio="'.$preciosProducto[$j].'">
                 <label for="tamano-'.$j.'" class="btnLabel btn-sm btn-default-outline">
                     '.$tamanosProducto[$j].'
                 </label>
                 ';
                 $scriptTamano = '
-                var tamano =  "";
-                    var precio = "";
-                $(".inputTamano").click(function(){
-                    
-                    if ($(this).is(":checked"))
-                    {
-                        datos.tamano = $(this).val();
-                        datos.precio = $(this).attr("data-tamano-precio");
-                        $(".num").text(precio);
-                    }
-                });
+                function handleTamano(myRadio) {
+                    datos.tamano = myRadio.value;
+                    datos.precio = myRadio.dataset.tamanoprecio;
+                    document.getElementById("num").innerHTML = datos.precio;
+                }
             ';
         
         }
@@ -51,28 +45,23 @@ if(isset($_GET['name'])){
         $coloresProducto = explode(",", $coloresDetalle);
         for($i = 0; $i <count($coloresProducto); $i++){
             $color .= '
-            <input type="radio" id="color-'.$i.'" class="inputColor" name="color-option" value="'.$coloresProducto[$i].'" data-option-id="option-1">
+            <input type="radio" id="color-'.$i.'" class="inputColor" name="color-option" onclick="handleColor(this);"  value="'.$coloresProducto[$i].'" data-option-id="option-1">
             <label for="color-'.$i.'" class="btnLabel btn-sm btn-default-outline">
                 '.$coloresProducto[$i].'
             </label>
             ';
         }
         $scriptColor = '
-        var color =  "";
-        $(".inputColor").click(function(){
-            
-            if ($(this).is(":checked"))
-            {
-                datos.color = $(this).val();
-            }
-        });
+        function handleColor(myRadio) {
+            datos.color = myRadio.value;
+        } 
         ';
     }
     if($fotosDetalle){
         $fotosProducto = explode(",", $fotosDetalle);
         for($f = 0; $f <count($fotosProducto); $f++){
             $foto .= '
-            <div class="swiper-slide" style="background-image:url(./assets/img/detalle/'.$fotosProducto[$f].')"></div>
+            <div class="swiper-slide swiper-lazy swiper-lazy-loaded" style="background-image:url(./assets/img/detalle/'.$fotosProducto[$f].')"></div>
             ';
         }
     }

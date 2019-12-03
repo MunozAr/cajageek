@@ -1,3 +1,17 @@
+<div  class="col-12 np">
+<div class="swiper-container banner-top">
+    <div class="swiper-wrapper" >
+    <?= $bannerComponente  ?>
+  </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+    
+  </div>
+</div>
+
 <div class="navCategories col-12">
     <?= $categoriaComponente; ?>
 </div>
@@ -22,48 +36,43 @@
             </header>
             <div class="filter-content collapse show" id="collapse_aside1">
               <div class="card-body">
-                <form class="mb-3">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-                </form>
                 <div v-for ="type in typesList" :key="type.tipo_id" class="checkbox">
                   <label>
-                    <input type="checkbox" :value="type.tipo_id" v-model="checkedType" >{{type.tipo_nombre}}
+                    <input type="checkbox" name="tipos" :value="type.tipo_id" v-model="checkedType" >{{type.tipo_nombre}}
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="tipos" value="Discount" v-model="checkedType" >Descuentos
                   </label>
                 </div>
                 <span>You have chosen: {{ checkedType }}</span>
-
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- filter-group  .// -->
-          
         </div>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-10">
           <div class="row">
               <div  class=" tamanoShowProducto" v-for="(producto,index) in filterProducts" v-if="index < productoToShow" :key="products[index].producto_id" >
-              <a v-bind:href="'producto.php?name='+products[index].producto_nombre+'&id='+products[index].producto_id+'&identifier='+products[index].producto_identificador">
+              <a class="pointerProduct" v-bind:href="'producto.php?name='+products[index].producto_nombre+'&id='+products[index].producto_id+'&identifier='+products[index].producto_identificador">
                     <div class="card product-card">
                         <img class="card-img" v-bind:src="'./assets/img/productos/'+products[index].producto_foto" v-bind:alt="products[index].producto_nombre+' - Caja Geek' ">
                         <div class="card-body">
-                            <h4 class="card-title">
+                            <h2 class="card-title">
                             {{ products[index].producto_nombre }}
-                            </h4>
-                            <h6 class="card-subtitle mb-2 text-muted">
+                            </h2>
+                            <h4 class="card-subtitle mb-2 text-muted">
                                 Identificador: {{ products[index].producto_identificador }}
-                            </h6>
+                            </h4>
                             <p class="card-text">
                                 
                             </p>
                             <div class="buy d-flex justify-content-between align-items-center">
                                 <div class="price text-success">
-                                    <h5 class="mt-4">
+                                    <h3 class="mt-4">
                                         Desde: {{products[index].producto_precio}}
-                                    </h5>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -71,17 +80,14 @@
                 </a>
               </div>
               </div>
-              <div class="col-12 text-center">
-              <img v-if="!effectGif" width="45px;" src="./assets/img/inicio/loading.gif" alt="Loading GIF - Caja Geek">
+              <div class="col-12 text-center espacioProductos">
+              <img v-if="!effectGif" width="100px;" src="./assets/img/inicio/loading.gif" alt="Loading GIF - Caja Geek">
               <button @click="loadMore()" class="btn btn-danger" v-if="effectGif">Load more</button>
               </div>
           </div>
-          
         </div>
       </div>
     </div>
-    
-    
 </div>
 
 
@@ -91,7 +97,7 @@ $('.navCategories').slick({
   centerPadding: '5px',
   slidesToShow: 6,
   responsive: [
-    {
+  {
     breakpoint: 1240,
     settings: {
       centerMode: true,
@@ -117,6 +123,18 @@ $('.navCategories').slick({
   }
 ]
 });
+var galleryTopProductDetails = new Swiper('.banner-top', {
+      spaceBetween: 10,
+      lazy:true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      }
+    });
+
 var productos = new Vue({
   el: '#app',
   data(){
@@ -140,19 +158,18 @@ var productos = new Vue({
               this.products = response.data;
               this.allProducts = response.data;
               this.effectGif = true;
-            }, 500);
+            }, 800);
       }).catch(e => {
           console.log(e);
       });
 
       axios.post('module/get_allproducts.php',
-        {
-          solicitud:'tipos'
-        }).then(response => {
+        {solicitud:'tipos'}
+        ).then(response => {
           this.typesList = response.data
         }).catch(e => {
           console.log(e);
-        });
+      });
   },
   methods: {
     loadMore(){
@@ -162,15 +179,26 @@ var productos = new Vue({
         this.productoToShow = this.productoToShow + cantidadAMostrar;
         this.productoToShow += 10;
      },
-
+    _isContains(json, value) {
+        let contains = false;
+        Object.keys(json).some(key => {
+            contains = typeof json[key] === 'object' ? 
+            _isContains(json[key], value) : json[key] === value;
+            return contains;
+        });
+        return contains;
+    }
   },
-  computed:{
+  computed: {
     filterProducts() {
+      if(this._isContains(this.checkedType,'Discount')){
+         return this.products.filter(f => f.producto_descuento > 0);
+      }
       if (!this.checkedType.length)
-       return this.products = this.allProducts
-      return this.products = this.products.filter(f => this.checkedType.includes(f.tipo_id));
+        return this.products = this.allProducts;
+        return this.products.filter(f => this.checkedType.includes(f.tipo_id));
     },
-  }
+  }, 
 
 });
 </script>

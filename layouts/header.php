@@ -6,7 +6,7 @@
                         <div class="col-md-6 col-lg-5" style="padding-right:0px;">
                             <span class="header-logo">
                                 <a href="inicio.php">
-                                    <h3>Caja Geek</h3>    
+                                    <h1>Caja Geek</h1>    
                                 </a>
                             </span>
                         </div>
@@ -32,7 +32,7 @@
                         </nav>
                     </div>
                     <div class="d-block d-sm-block d-md-block d-lg-none d-xl-none col-md-12 np">
-                        <button onclick="SandwichEffect()" class="bte2" id="btn2">
+                        <button name="SandwichButton" onclick="SandwichEffect()" class="bte2" id="btn2">
                             <span id="lin1" class="spn12"></span>
                             <span id="lin2" class="spn22"></span>
                             <span id="lin3" class="spn32"></span>

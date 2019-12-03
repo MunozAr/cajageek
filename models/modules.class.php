@@ -483,7 +483,7 @@
         #12
         public function getDataToCategories($categoria_id){
             $datos = $this->getCategoryData($categoria_id);
-            $tipos = $this->getTipos();
+            /*$tipos = $this->getTipos();
             $countDatos = count($datos);
             $textoTipo = '';
             $arrayEstructura = array();
@@ -538,9 +538,9 @@
                             array_push($arrayEstructura[$i]['componentes'],$Item);
                     }   
                 }
-            }
+            }*/
 
-            return $arrayEstructura;
+            return $datos;
         }
 
         #10
@@ -587,6 +587,29 @@
                 'operation'=>array(),
                 'conditional' => array(
                     array('','p.producto_activo','=',1)
+                )
+                );
+
+            $this->setSelectArg($arg);
+            $result = $this->selectData();
+
+            return $result;
+        }
+
+        public function getBanners()
+        {
+
+            $arg = array(
+                'tables'=>array(
+                    array('banners','b')
+                    ),
+                'relation'=>array(),
+                'order'=>array(),
+                'limit'=>array(),
+                'fields'=>array(),
+                'operation'=>array(),
+                'conditional' => array(
+                    array('','b.banner_activo','=',1)
                 )
                 );
 
