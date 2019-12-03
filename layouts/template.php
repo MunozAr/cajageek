@@ -8,7 +8,7 @@
   <meta name="description" content="Descripción de Caja Geek" >
   <meta name="robots" content="noindex">
   <title>Caja Geek</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
   <!--FONT MONTSERRAT -->
@@ -16,16 +16,12 @@
     <!--FONT MONTSERRAT -->
      
   <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css"/>
-  <link rel="stylesheet" href="assets/css/slick.css"/>
-  <link rel="stylesheet" href="assets/css/slick-theme.css"/>
   <link rel="stylesheet" href="assets/css/swiper.min.css"/>
   <link rel="stylesheet" href="assets/css/style.css"/>
   
-     
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="assets/js/slick.min.js"></script>
   <script src="assets/js/swiper.min.js"></script>
 
 </head>

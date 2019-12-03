@@ -440,6 +440,7 @@
             $arrayCategoryComponent = array();
             for($i = 0; $i < $countResult; $i++){
                 $categoryComponent = '
+                <div class="swiper-slide">
                 <div class="categoriaDetalle col-12">
                     <div class="col-12">
                         <a href="categorias.php?categoria='.$result[$i]['categoria_nombre'].'&id='.$result[$i]['categoria_id'].'">
@@ -447,6 +448,7 @@
                             <h1>'.$result[$i]['categoria_nombre'].'</h1>
                         </a>
                     </div>
+                </div>
                 </div>
                 ';
                 array_push($arrayCategoryComponent,$categoryComponent);

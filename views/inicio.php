@@ -13,7 +13,14 @@
 </div>
 
 <div class="navCategories col-12">
-    <?= $categoriaComponente; ?>
+<div class="categories-container">
+    <div class="swiper-wrapper">
+      <?= $categoriaComponente; ?>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+  </div>
 </div>
 <div id="navSelector">
     <div class="col-12">
@@ -92,37 +99,16 @@
 
 
 <script>
-$('.navCategories').slick({
-  centerMode: true,
-  centerPadding: '5px',
-  slidesToShow: 6,
-  responsive: [
-  {
-    breakpoint: 1240,
-    settings: {
-      centerMode: true,
-      centerPadding: '40px',
-      slidesToShow: 4
-    }
-  }, 
-  {
-    breakpoint: 1024,
-    settings: {
-      centerMode: true,
-      centerPadding: '40px',
-      slidesToShow: 3
-    }
-  },
-  {
-    breakpoint: 480,
-    settings: {
-      centerMode: true,
-      centerPadding: '20px',
-      slidesToShow: 1
-    }
-  }
-]
-});
+var swiper = new Swiper('.categories-container', {
+      slidesPerView: 4,
+      centeredSlides: true,
+      spaceBetween: 30,
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
 var galleryTopProductDetails = new Swiper('.banner-top', {
       spaceBetween: 10,
       lazy:true,
