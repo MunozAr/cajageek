@@ -99,7 +99,7 @@
 
 
 <script>
-var swiper = new Swiper('.categories-container', {
+var categorias = new Swiper('.categories-container', {
       slidesPerView: 4,
       centeredSlides: true,
       spaceBetween: 30,

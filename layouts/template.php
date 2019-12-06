@@ -14,7 +14,6 @@
   <!--FONT MONTSERRAT -->
   <link rel="stylesheet" href="assets/fonts/stylesheet.css"/>
     <!--FONT MONTSERRAT -->
-     
   <link rel="stylesheet" href="assets/css/bootstrap-grid.min.css"/>
   <link rel="stylesheet" href="assets/css/swiper.min.css"/>
   <link rel="stylesheet" href="assets/css/style.css"/>
