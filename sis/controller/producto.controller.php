@@ -15,11 +15,11 @@ include '../common/theme.php';// archivo que actualiza el tema.
 
 
 // Inicia objeto de clase
-$obj = new Proyecto();
+$obj = new Producto();
 
 //Datos Generales x Archivo
 $type_sys = SYS;
-$htmlTitulo = 'Módulo de Proyectos';
+$htmlTitulo = 'Módulo de Productos';
 
 
 // Inicializa variable.
@@ -100,9 +100,14 @@ $htmlOptionsCategoria = '';
             case 'agregar-exe':
 
                 $arg = array(
-                  $proyecto_nombre
-                  ,$proyecto_distrito
-                  ,$proyecto_imagen
+                    $producto_nombre
+                    ,$producto_identificador
+                    ,$producto_foto
+                    ,$producto_precio
+                    ,$producto_descuento
+                    ,$producto_fecha
+                    ,$categoria_id
+                    ,$tipo_id
                     );
 
                 $result = $obj->agregar($arg);
@@ -116,11 +121,15 @@ $htmlOptionsCategoria = '';
 
             case 'modificar-exe':
                 $arg = array(
-                        'id' => $proyecto_id
+                        'id' => $producto_id
                         ,'fields' => array(
-                          $proyecto_nombre
-                          ,$proyecto_distrito
-                          ,$proyecto_imagen
+                          $producto_nombre
+                          ,$producto_identificador
+                          ,$producto_foto
+                          ,$producto_precio
+                          ,$producto_descuento
+                          ,$categoria_id
+                          ,$tipo_id
                         )
                     );
                     print_r($arg);
@@ -128,7 +137,7 @@ $htmlOptionsCategoria = '';
 
                 if($result == 1){
                     $msg = time_alert_text('success',3000,'Se guardaron los datos correctamente.En breve será redireccionado...');
-                    $msg.= script_redirect('proyecto.php',3000);
+                    $msg.= script_redirect('producto.php',3000);
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -159,15 +168,19 @@ $htmlOptionsCategoria = '';
 
              print_r($result);
                 foreach($result as $col){
-                   $proyecto_id = $col['proyecto_id'];
-                   $proyecto_nombre =  $col['proyecto_nombre'];
-                   $proyecto_distrito =  $col['proyecto_distrito'];
-                   $proyecto_imagen =  $col['proyecto_imagen'];
-                   $proyecto_date =  $col['proyecto_date'];
-                   $proyecto_estado =  $col['proyecto_estado'];
+                   $producto_id = $col['producto_id'];
+                   $producto_nombre =  $col['producto_nombre'];
+                   $producto_identificador =  $col['producto_identificador'];
+                   $producto_foto =  $col['producto_foto'];
+                   $producto_precio =  $col['producto_precio'];
+                   $producto_descuento =  $col['producto_descuento'];
+                   $producto_fecha =  $col['producto_fecha'];
+                   $categoria_id =  $col['categoria_id'];
+                   $tipo_id =  $col['tipo_id'];
+                   $producto_activo =  $col['producto_activo'];
                 }
 
-                $título_form = 'Modificar: <b style="color: #EB2929;"> Titulo: '.$proyecto_nombre.'/ Distrito: '.$proyecto_distrito.'/ Fecha: '.$proyecto_date.' </b>';
+                $título_form = 'Modificar: <b style="color: #EB2929;"> Nombre: '.$producto_nombre.'/ Identificador: '.$producto_identificador.'/ Fecha: '.$producto_fecha.' </b>';
 
             break;
         }
@@ -179,9 +192,26 @@ $htmlOptionsCategoria = '';
 
     #Funcionalidades generales/globales (aplica como default ante cualquier evento)
 
-    //Listado de tipo
-    //$selectCategoria = $obj->listaTipo($blog_categoria);
-    //$selectSeccion = $obj->listaSeccion($blog_seccion);
+    //Listado de Categorias
+    $selectCategorias = array(
+        'option'            => 'group'
+        ,'select-name'      => 'categoria_id'
+        ,'select-required'  => '1'
+        ,'selected-value'   => $categoria_id
+        ,'btn-name'         => 'btn-op'
+        ,'btn-text'         => ''
+    );
+    $listaCategorias = $obj->listaCategorias($selectCategorias);
+
+    $selectTipo = array(
+        'option'            => 'group'
+        ,'select-name'      => 'tipo_id'
+        ,'select-required'  => '1'
+        ,'selected-value'   => $tipo_id
+        ,'btn-name'         => 'btn-op'
+        ,'btn-text'         => ''
+    );
+    $listaTipos = $obj->listaTipos($selectTipo);
 
     //Listado de usuarios activos
     $htmlDinamicList_1 = $obj->listaActivos($limit,$page,$btn_op);

@@ -1,4 +1,4 @@
-<?php require_once '../controller/proyecto.controller.php'; ?>
+<?php require_once '../controller/producto.controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,15 +94,15 @@
                               </b>
                             </big>
                             <br>
-                            <small><i>Imágenes actuales en la web.</i></small>
+                            <small><i>Imagen actual en la web.</i></small>
                           </p>
                           <div class="sec-img-actual">
                             <div class="col-xs-12">
                               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                <img class="img-responsive" src="app/img/proyectos/<?= $proyecto_imagen; ?>">
+                                <img class="img-responsive" src="../../assets/img/productos/<?= $producto_foto; ?>">
                                 <br>
-                                <p>Imagen Noticia Portada</p>
-                                <small><?= $proyecto_imagen; ?></small>
+                                <p>Imagen Portada del Producto</p>
+                                <small><?= $producto_foto; ?></small>
                               </button>
                             </div>
 
@@ -111,10 +111,10 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="exampleModalLabel">Imagen: <?= $proyecto_imagen; ?></h4>
+                                    <h4 class="modal-title" id="exampleModalLabel">Imagen: <?= $producto_foto; ?></h4>
                                   </div>
                                   <div class="modal-body">
-                                    <img class="img-responsive" src="app/img/proyectos/<?= $proyecto_imagen; ?>">
+                                    <img class="img-responsive" src="../../assets/img/productos/<?= $producto_foto; ?>">
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -132,28 +132,52 @@
                               <div class="col-xs-12 col-md-6">
                                 <div class="section-input">
                                   <label>Imagen:</label>
-                                  <input type="file" class="form-control btn-success" name="proyecto_imagen" value="<?= $proyecto_imagen ?>" id="proyecto_imagen" accept="image/*" value="">
+                                  <input type="file" class="form-control btn-success" name="producto_foto" value="<?= $producto_foto ?>" id="producto_foto" accept="image/*" value="">
                                 </div>
                               </div>
                               <div class="col-md-4">
                                 <div class="section-input">
-                                  <label>Nombre del proyecto:</label>
-                                  <input type="text" class="form-control" name="proyecto_nombre" value="<?= $proyecto_nombre; ?>">
+                                  <label>Nombre:</label>
+                                  <input type="text" class="form-control" name="producto_nombre" value="<?= $producto_nombre; ?>">
                                 </div>
                               </div>
                               <div class="col-xs-12">
                                 <div class="section-input">
-                                  <label>Distrito del proyecto:</label>
-                                  <input type="text" class="form-control" name="proyecto_distrito" value="<?= $proyecto_distrito; ?>">
+                                  <label>Identificador:</label>
+                                  <input type="text" class="form-control" name="producto_identificador" value="<?= $producto_identificador; ?>">
                                 </div>
                               </div>
+                              <div class="col-xs-12">
+                                <div class="section-input">
+                                  <label>Precio:</label>
+                                  <input type="text" class="form-control" name="producto_precio" value="<?= $producto_precio; ?>">
+                                </div>
+                              </div>
+                              <div class="col-xs-12">
+                                <div class="section-input">
+                                  <label>Descuento:</label>
+                                  <input type="text" class="form-control" name="producto_descuento" value="<?= $producto_descuento; ?>">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="section-input">
+                                  <label>Elija la Categoría del Producto</label>
+                                  <?= $listaCategorias; ?>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="section-input">
+                                  <label>Elija el Tipo del Producto</label>
+                                  <?= $listaTipos; ?>
+                                </div>
                             </div>
                             <!-- fin -->
 
 
                             <!-- hidden obj -->
-                            <input type="hidden"  autocomplete="off" name="proyecto_id" value="<?= $proyecto_id; ?>">
-                            <input type="hidden"  autocomplete="off" name="proyecto_imagen_c" value="<?= $proyecto_imagen; ?>">
+                            <input type="hidden"  autocomplete="off" name="proyecto_id" value="<?= $producto_id; ?>">
+                            <input type="hidden"  autocomplete="off" name="producto_foto_c" value="<?= $producto_foto; ?>">
 
 
                             <input type="hidden"  autocomplete="off" value="<?= $btn_op_text; ?>/<?= $btn_op; ?>/<?= $valor_filtro; ?>/<?= $valor_pagina; ?>">
@@ -164,7 +188,7 @@
                                     Guardar <span class="glyphicon glyphicon-saved" style="font-size:14px;"></span>
                                   </button>
 
-                                  <button type="button" class="btn btn-danger" onclick="document.location=('proyecto.php');">
+                                  <button type="button" class="btn btn-danger" onclick="document.location=('producto.php');">
                                     Regresar <span class="glyphicon glyphicon-remove" style="font-size:14px;"></span>
                                   </button>
                                 </div>

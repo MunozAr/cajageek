@@ -39,7 +39,7 @@ $block = 'block';
 
     $arg_btn_home = array(
         //array('icono','titulo','link','hidden/block')
-        array('th'  ,'<br>Módulo de<br> Proyectos'   ,'proyecto.php'    , "block")
+        array('th'  ,'<br>Módulo de<br> Productos'   ,'producto.php'    , "block")
     );
 
     $htmlBtnHome = btn_link_home($arg_btn_home);

@@ -1,4 +1,4 @@
-<?php require_once '../controller/proyecto.controller.php'; ?>
+<?php require_once '../controller/producto.controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,18 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>::Módulo de Proyectos Inmobiliarios::</title>
+    <title>::Módulo de Productos::</title>
     <link rel="stylesheet" type="text/css" href="app/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="app/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../lib/fileinput/css/fileinput.css">
-    <script src="app/js/jquery.js"></script>
     <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
-    <script type="text/javascript" src="../lib/fileinput/js/plugins/piexif.js"></script>
-    <script type="text/javascript" src="../lib/fileinput/js/fileinput.js"></script>
-    <script type="text/javascript" src="../lib/fileinput/js/locales/fr.js"></script>
-    <script type="text/javascript" src="../lib/fileinput/js/locales/es.js"></script>
+    <script src="app/js/jquery.js"></script>
     <script src="app/js/bootstrap.js"></script>
-
+    <script src="app/js/summernote.js"></script>
+    <script src="app/js/app.js"></script>
     <style type="text/css">
       /* TEMA */
       <?= $styleMask; ?>
@@ -113,22 +109,42 @@
               se recomienda verificar los datos antes de ser guardados. <span class="glyphicon glyphicon-thumbs-up" style="color:blue;"></span>
             </p>
           </div>
-
-          <div class="obj-form">
-            <div class="section-input">
-              <label>Subir Imagen:</label>
-              <input type="file" class="form-control btn-success" name="proyecto_imagen" id="proyecto_imagen" accept="image/*" value="" required>
-                <small><b>Nota:</b> Medidas recomendadas: 552x552</small>
-            </div>
-
+          
+          <div class="obj-form">         
             <div class="section-input">
               <label>Ingrese Nombre</label>
-                <input type="text" class="form-control" name="proyecto_nombre" required>
+                <input type="text" class="form-control" name="producto_nombre" required>
             </div>
             <div class="section-input">
-              <label>Ingrese Distrito:</label>
-              <input type="text" class="form-control" name="proyecto_distrito" required>
+              <label>Ingrese Identificiador:</label>
+              <input type="text" class="form-control" name="producto_identificador" required>
             </div>
+            <div class="section-input">
+              <label>Subir Imagen:</label>
+              <input type="file" class="form-control btn-success" name="producto_foto" id="producto_foto" accept="image/*" value="" required>
+                <small><b>Nota:</b> Medidas recomendadas: 552x552</small>
+            </div>
+            <div class="section-input">
+              <label>Ingrese Precio:</label>
+              <input type="text" class="form-control" name="producto_precio" required>
+            </div>
+            <div class="section-input">
+              <label>Ingrese Descuento</label>
+              <input type="text" class="form-control" name="producto_descuento" required>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="section-input">
+                <label>Elija la Categoría del Producto</label>
+                <?= $listaCategorias; ?>
+              </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="section-input">
+                <label>Elija el Tipo del Producto</label>
+                <?= $listaTipos; ?>
+              </div>
+          </div>
+            
             <!-- hidden obj -->
             <div class="section-input">
               <button type="submit" name="btn-op-2" value="agregar-exe/<?= $btn_op; ?>/<?= $valor_filtro; ?>/<?= $valor_pagina; ?>" class="btn btn-success btn-save">

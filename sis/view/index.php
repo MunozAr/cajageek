@@ -14,6 +14,7 @@
 	<script src="app/js/jquery.js"></script>
 	<script src="app/js/bootstrap.js"></script>
 	<script src="app/js/login.jquery.js"></script>
+    <script src="app/js/summernote.js"></script>
 
     <style>
         body{

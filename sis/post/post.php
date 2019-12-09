@@ -204,39 +204,51 @@ if(isset($_FILES['subcategoria_imagen3']['tmp_name']) && $_FILES['subcategoria_i
 *	*/
 
 /*PROYECTO*/
-if(isset($_POST['proyecto_id'])){
-	$proyecto_id = htmlspecialchars($_POST['proyecto_id']);
+if(isset($_POST['producto_id'])){
+	$producto_id = htmlspecialchars($_POST['producto_id']);
 }
 
-if(isset($_POST['proyecto_nombre'])){
-	$proyecto_nombre = htmlspecialchars($_POST['proyecto_nombre']);
+if(isset($_POST['producto_nombre'])){
+	$producto_nombre = htmlspecialchars($_POST['producto_nombre']);
 }
-if(isset($_POST['proyecto_distrito'])){
-	$proyecto_distrito = htmlspecialchars($_POST['proyecto_distrito']);
+if(isset($_POST['producto_identificador'])){
+	$producto_identificador = htmlspecialchars($_POST['producto_identificador']);
 }
-if(isset($_POST['proyecto_date'])){
-	$proyecto_date = htmlspecialchars($_POST['proyecto_date']);
+if(isset($_POST['producto_precio'])){
+	$producto_precio = htmlspecialchars($_POST['producto_precio']);
+}
+if(isset($_POST['producto_descuento'])){
+	$producto_descuento = htmlspecialchars($_POST['producto_descuento']);
+}
+if(isset($_POST['categoria_id'])){
+	$categoria_id = htmlspecialchars($_POST['categoria_id']);
+}
+if(isset($_POST['tipo_id'])){
+	$tipo_id = htmlspecialchars($_POST['tipo_id']);
+}
+if(isset($_POST['producto_activo'])){
+	$producto_activo = htmlspecialchars($_POST['producto_activo']);
 }
 /*Imagen de Proyecto*/
 $newproyecto = date("YmdHis");
 $maxsize = 5000 * 6000;
 $newfile_img = $newproyecto.'.jpg';
 
-$img_temp = $_FILES['proyecto_imagen']['tmp_name'];
+$img_temp = $_FILES['producto_foto']['tmp_name'];
 
-if(isset($_FILES['proyecto_imagen']['tmp_name']) && $_FILES['proyecto_imagen']['tmp_name']!=''){
-	if (!empty($_FILES['proyecto_imagen']['name'])) {
-		if ($_FILES['proyecto_imagen']['size'] <= $maxsize) {
-			$productoURL = "app/img/proyectos/";
-			if (!move_uploaded_file($_FILES['proyecto_imagen']['tmp_name'], $productoURL . $newfile_img));
-			@unlink("app/img/proyectos/".$proyecto_imagen_c);
-			$proyecto_imagen = $newfile_img;
+if(isset($_FILES['producto_foto']['tmp_name']) && $_FILES['producto_foto']['tmp_name']!=''){
+	if (!empty($_FILES['producto_foto']['name'])) {
+		if ($_FILES['producto_foto']['size'] <= $maxsize) {
+			$productoURL = "../../assets/img/productos/";
+			if (!move_uploaded_file($_FILES['producto_foto']['tmp_name'], $productoURL . $newfile_img));
+			@unlink("../../assets/img/productos/".$producto_foto_c);
+			$producto_foto = $newfile_img;
 		}else{
-			//$proyecto_imagen = $_POST['proyecto_imagen_c'];
+			//$producto_foto = $_POST['producto_foto_c'];
 		}
 	}
 }else{
-	$proyecto_imagen = $_POST['proyecto_imagen_c'];
+	$producto_foto = $_POST['producto_foto_c'];
 }
 
 /*PROYECTO-DEPARTAMENTO*/

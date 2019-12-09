@@ -320,7 +320,7 @@ $(document).ready(function(){
 
 
 /* js input file */
-
+/*
 $("#blog_imagen").fileinput({
     language:'es',
     showUpload:false,
@@ -334,12 +334,12 @@ $("#blog_icon").fileinput({
     allowedFileExtensions: ["jpg", "png"],
     maxFileCount: 1,
     maxFileSize:1000
-});
+});*/
 
 
 
-
-/* filtro productos */
+/*
+/* filtro productos 
 $(document).ready(function(){
   $('.producto_categoria_select').change(function(){
     //alert('jeje');
@@ -356,6 +356,8 @@ $(document).ready(function(){
   focus: true                  // set focus to editable area after initializing summernote
  });
 
+});
+
 
  $(document).ready(function(){
   $('#not-descripcion1').summernote({
@@ -364,11 +366,5 @@ $(document).ready(function(){
    maxHeight: null,             // set maximum height of editor
    focus: true                  // set focus to editable area after initializing summernote
   });
-/*
- $(document).ready(function() {
-  $('#not-descripcion1').summernote(); // id del textarea
-  $('.note-toolbar-wrapper').remove(); // Para quitar todas las opciones del cuadro de texto.
+
 });*/
-
-
-});

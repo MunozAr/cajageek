@@ -5,7 +5,7 @@ function arr_theme()
 	$themes = array(
 		'theme1' => array(
 			'theme_name'		=>	'Default'
-			,'bg_head'			=>	'#a7bb3c'
+			,'bg_head'			=>	'rgba(141, 194, 229, 1)'
 			,'bg_btn_hover' 	=>	'#ccc'
 			,'bg_drop_head' 	=>	'gray'
 			,'bg_body' 			=>	'#eee'
@@ -15,14 +15,14 @@ function arr_theme()
 			,'txt_drop_head' 	=>	'#fff'
 			,'txt_btn' 			=>	'#fff'
 			,'bg_border'		=>	'#424242'
-			,'bg_scrollbar'		=>	'#a7bb3c'
+			,'bg_scrollbar'		=>	'rgba(141, 194, 229, 1)'
 			,'bg_scroll_thumb'	=>	'#000'
-			,'bg_btn_home'		=>	'#a7bb3c'
+			,'bg_btn_home'		=>	'rgba(141, 194, 229, 1)'
 			,'bg_btn_homehover'	=>	'#b1b1b1'
 			,'txt_btn_home'		=>	'#fff'
 			,'txt_btn_homehover'=>	'#000'
 			,'txt_form'			=>	'#000'
-			,'bg_head_list'		=>	'#a7bb3c'
+			,'bg_head_list'		=>	'rgba(141, 194, 229, 1)'
 			),
 		'theme2' => array(
 			'theme_name'		=>	'Retro'

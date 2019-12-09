@@ -1,6 +1,6 @@
 <?php
 
-    class Proyecto extends View
+    class Producto extends View
     {
 
         //TABLAS
@@ -28,7 +28,7 @@
                             "type"=>"element-form"
                             ,"data"=>array(
                                     "element"=>"checkbox"
-                                    ,"row"=>"proyecto_id"
+                                    ,"row"=>"producto_id"
                                     ,"id"=>"user-check-"
                                     ,"name"=>"check-id[]"
                                 )
@@ -40,43 +40,42 @@
                     ,"body"=>array(
                             "type"=>"text"
                             ,"data"=>array(
-                                    "row"=>array("proyecto_nombre")
+                                    "row"=>array("producto_nombre")
                                 )
                         )
                     )
                 ,
-
-                                    "col-2"=>array(
-                                        "head"=>"Imagen"
-                                        ,"body"=>array(
-                                            "type"=>"image"
-                                            ,"style"=>array(
-                                                array("width","50px")
-                                            )
-                                            ,"data"=>array(
-                                                "row"=>array("proyecto_imagen")
-                                                ,"modal"=>'1'
-                                                ,"url"=>'app/img/proyectos/'
-                                            )
-                                        )
-                                    )
+                "col-2"=>array(
+                "head"=>"Foto"
+                    ,"body"=>array(
+                        "type"=>"image"
+                        ,"style"=>array(
+                            array("width","50px")
+                        )
+                        ,"data"=>array(
+                            "row"=>array("producto_foto")
+                            ,"modal"=>'1'
+                            ,"url"=>'../../assets/img/productos/'
+                        )
+                    )
+                )
                 ,
                 "col-3"=>array(
-                    "head"=>"Distrito"
+                    "head"=>"Precio"
                     ,"body"=>array(
                             "type"=>"text"
                             ,"data"=>array(
-                                    "row"=>array("proyecto_distrito")
+                                    "row"=>array("producto_precio")
                                 )
                         )
                     )
                 ,
                 "col-4"=>array(
-                    "head"=>"Fecha de Creación"
+                    "head"=>"Descuento"
                     ,"body"=>array(
                             "type"=>"text"
                             ,"data"=>array(
-                                    "row"=>array("proyecto_date")
+                                    "row"=>array("producto_descuento")
                                 )
                         )
                     )
@@ -86,7 +85,7 @@
                 ,"body"=>array(
                         "type"=>"state"
                         ,"data"=>array(
-                                "row"=>array("proyecto_estado")
+                                "row"=>array("producto_activo")
                                 ,"values"=>array(
                                     array("1","<b>ACTIVO<b>")
                                     ,array("2","<b>DESACTIVADO</b>")
@@ -103,10 +102,10 @@
                             ,"data"=>array(
                                     "element"=>"button"
                                     ,"type"=>"submit"
-                                    ,"row"=>"proyecto_id"
+                                    ,"row"=>"producto_id"
                                     ,"btn-op"=>"modificar-form"
                                     ,"class"=>"success btn-sm"
-                                    ,"formaction"=>"proyecto-form.php"
+                                    ,"formaction"=>"producto-form.php"
                                     ,"name"=>"btn-op-form"
                                     ,"icon"=>"pencil"
                                     ,"text"=>""
@@ -143,15 +142,15 @@
             $query = array(
                 "consult"=>array(
                     'tables'=>array(
-                        array('proyecto','p')
+                        array('productos','p')
                     ),
                     'relation'=>array(
                     ),
                     'conditional'=>array(
-                        array('','p.proyecto_estado','=','1')
+                        array('','p.producto_activo','=','1')
                     ),
                     'order'=>array(
-                        array('order by','p.proyecto_id','ASC')
+                        array('order by','p.producto_id','ASC')
                     ),
                     'limit'=>array(
                         array($limit,$offset)
@@ -159,13 +158,13 @@
                 )
                 ,"count"=>array(
                     'tables'=>array(
-                        array('proyecto','p')
+                        array('productos','p')
                         ),
                     'operation'=>array(
-                        array('COUNT','p.proyecto_id','paginator_count')
+                        array('COUNT','p.producto_id','paginator_count')
                         ),
                     'conditional'=>array(
-                        array('','p.proyecto_estado','=','1')
+                        array('','p.producto_activo','=','1')
                     )
                 )
                 ,"limit"=>$limit
@@ -201,15 +200,15 @@
             $query = array(
                 "consult"=>array(
                     'tables'=>array(
-                        array('proyecto','p')
+                        array('productos','p')
                     ),
                     'relation'=>array(
                     ),
                     'conditional'=>array(
-                        array('','p.proyecto_estado','=','2')
+                        array('','p.producto_activo','=','2')
                     ),
                     'order'=>array(
-                        array('order by','p.proyecto_id','ASC')
+                        array('order by','p.producto_id','ASC')
                     )
                 )
             );
@@ -234,7 +233,7 @@
 
             #Table Config
             $config=array(
-                    "title"=>'Lista de Categorías <a class="btn-danger" href="proyecto.php" style="float:right;"><span class="glyphicon glyphicon-remove"></span> Cancelar Búsqueda</a>'
+                    "title"=>'Lista de Categorías <a class="btn-danger" href="producto.php" style="float:right;"><span class="glyphicon glyphicon-remove"></span> Cancelar Búsqueda</a>'
                     ,"icon"=>"th-list"
                     ,"visible"=>"block"
                     ,"btn-op"=>$btn_op
@@ -244,10 +243,10 @@
             $query = array(
                 "consult"=>array(
                     'tables'=>array(
-                        array('proyecto','p')
+                        array('productos','p')
                     ),
                     'conditional'=>array(
-                      array('','p.proyecto_nombre','like','CONCAT("%","'.$value.'","%")')
+                      array('','p.producto_nombre','like','CONCAT("%","'.$value.'","%")')
                     )
                 )
             );
@@ -268,15 +267,15 @@
             $arg = array(
                 'tables'=>array(
                     //array('tabla')
-                    array('proyecto')
+                    array('productos')
                 ),
                 'fields'=>array(
                     //array('campo','valor')
-                    array('proyecto_estado',$value)
+                    array('producto_activo',$value)
                 ),
                 'conditional'=>array(
                     //array('operador: VACIO, AND ó OR','campo','valor')
-                    array('','proyecto_id',$id)
+                    array('','producto_id',$id)
                 )
             );
 
@@ -291,10 +290,10 @@
             #Query
             $arg = array(
                 'tables'=>array(
-                    array('proyecto')
+                    array('productos')
                 ),
                 'conditional'=>array(
-                    array('','proyecto_id',$id)
+                    array('','producto_id',$id)
                 )
             );
 
@@ -307,18 +306,29 @@
         public function agregar($value)
         {
             //  print_r($value);
-            $proyecto_nombre = $value[0];
-            $proyecto_distrito = $value[1];
-            $proyecto_imagen = $value[2];
+            $producto_nombre = $value[0];
+            $producto_identificador = $value[1];
+            $producto_foto = $value[2];
+            $producto_precio= $value[3];
+            $producto_descuento = $value[4];
+            $producto_fecha = $value[5];
+            $categoria_id = $value[6];
+            $tipo_id = $value[7];
+
             $arg = array(
                     'tables'=>array(
-                            array('proyecto')
+                            array('productos')
                         ),
                     'fields'=>array(
-                            array('proyecto_nombre',$proyecto_nombre)
-                            ,array('proyecto_distrito',$proyecto_distrito)
-                            ,array('proyecto_imagen',$proyecto_imagen)
-                            ,array('proyecto_estado',1)
+                            array('producto_nombre',$producto_nombre)
+                            ,array('producto_identificador',$producto_identificador)
+                            ,array('producto_foto',$producto_foto)
+                            ,array('producto_precio',$producto_precio)
+                            ,array('producto_descuento',$producto_descuento)
+                            ,array('producto_fecha',$producto_fecha)
+                            ,array('categoria_id',$categoria_id)
+                            ,array('tipo_id',$tipo_id)
+                            ,array('producto_activo',1)
                         )
                 );
             $add = $this->addRegister($arg);
@@ -332,10 +342,10 @@
 
             $arg = array(
                 'tables'=>array(
-                    array('proyecto','p')
+                    array('productos','p')
                     ),
                 'conditional' => array(
-                    array('','p.proyecto_id','=',$id)
+                    array('','p.producto_id','=',$id)
                     )
                 );
 
@@ -348,26 +358,35 @@
         #11
         public function editar($arg)
         {
+            
+            $producto_id = $arg['id'];
+            $producto_nombre = $arg['fields'][0];
+            $producto_identificador = $arg['fields'][1];
+            $producto_foto = $arg['fields'][2];
+            $producto_precio = $arg['fields'][3];
+            $producto_descuento = $arg['fields'][4];
+            $categoria_id = $arg['fields'][6];
+            $tipo_id = $arg['fields'][7];
 
-            $proyecto_id = $arg['id'];
-            $proyecto_nombre = $arg['fields'][0];
-            $proyecto_distrito = $arg['fields'][1];
-            $proyecto_imagen = $arg['fields'][2];
             #Query
             $arg = array(
                 'tables'=>array(
                     //array('tabla')
-                    array('proyecto')
+                    array('productos')
                 ),
                 'fields'=>array(
                     //array('campo','valor')
-                    array('proyecto_nombre',$proyecto_nombre)
-                    ,array('proyecto_distrito',$proyecto_distrito)
-                    ,array('proyecto_imagen',$proyecto_imagen)
+                    array('producto_nombre',$producto_nombre)
+                    ,array('producto_identificador',$producto_identificador)
+                    ,array('producto_foto',$producto_foto)
+                    ,array('producto_precio',$producto_precio)
+                    ,array('producto_descuento',$producto_descuento)
+                    ,array('categoria_id',$categoria_id)
+                    ,array('tipo_id',$tipo_id)
                 ),
                 'conditional'=>array(
                     //array('operador: VACIO, AND ó OR','campo','valor')
-                    array('','proyecto_id',$proyecto_id)
+                    array('','producto_id',$producto_id)
                 )
             );
 
@@ -403,15 +422,49 @@
         {
             $arg = array(
                     'tables'=>array(
-                            array('proyecto','p')
+                            array('productos','p')
                         )
                 );
 
             $fields = array(
-                    array('proyecto_id','proyecto_nombre','proyecto_imagen','proyecto_distrito','proyecto_estado')
+                    array('producto_id','producto_nombre','producto_identificador','producto_foto','producto_precio','producto_descuento','producto_fecha','categoria_id','tipo_id','producto_activo')
                 );
                 
             return $fields;
+
+        }
+
+        public function listaCategorias($options)
+      {
+          $arg = array(
+                  'tables'=>array(
+                          array('categorias','a')
+                      )
+              );
+
+          $fields = array(
+                  array('categoria_id','categoria_nombre')
+              );
+
+          $lista = $this->htmlListOption($options,$arg,$fields);
+
+          return $lista;
+        }
+        public function listaTipos($options)
+        {
+            $arg = array(
+                    'tables'=>array(
+                            array('tipos','t')
+                        )
+                );
+
+            $fields = array(
+                    array('tipo_id','tipo_nombre')
+                );
+
+            $lista = $this->htmlListOption($options,$arg,$fields);
+
+            return $lista;
 
         }
 

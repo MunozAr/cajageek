@@ -1,9 +1,9 @@
 <?php
 
 switch(URL){
-  case 'proyecto.php':
+  case 'producto.php':
     $idBtnAdd = 'callFormRight-2';
-    $filenameBtnAdd = 'proyecto-form.php';
+    $filenameBtnAdd = 'producto-form.php';
     $venderAccion = 'display:none';
   break;
 
@@ -19,7 +19,7 @@ switch(URL){
 ?>
 
 <header>
-  <section class="header-1" style="background: #a7bb3c;">
+  <section class="header-1" style="background: rgba(141, 194, 229, 1);">
     <div class="col-xs-2 hidden-xs">
 
     </div>
