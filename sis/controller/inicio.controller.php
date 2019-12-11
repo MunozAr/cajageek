@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+error_reporting(0);
 // Obligatorios
 include '../common/config.php';
 include '../functions/functions.php';
@@ -39,7 +39,11 @@ $block = 'block';
 
     $arg_btn_home = array(
         //array('icono','titulo','link','hidden/block')
-        array('th'  ,'<br>Módulo de<br> Productos'   ,'producto.php'    , "block")
+        array('th'  ,'<br>Módulo de<br> Banners'   ,'banner.php'    , "block")
+        ,array('th'  ,'<br>Módulo de<br> Categorias'   ,'categoria.php'    , "block")
+        ,array('th'  ,'<br>Módulo de<br> Tipos'   ,'tipo.php'    , "block")
+        ,array('th'  ,'<br>Módulo de<br> Productos'   ,'producto.php'    , "block")
+        ,array('th'  ,'<br>Módulo de<br> Detalles de Productos'   ,'producto_detalle.php'    , "block")
     );
 
     $htmlBtnHome = btn_link_home($arg_btn_home);

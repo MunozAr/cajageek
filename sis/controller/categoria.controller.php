@@ -15,11 +15,11 @@ include '../common/theme.php';// archivo que actualiza el tema.
 
 
 // Inicia objeto de clase
-$obj = new Producto();
+$obj = new Categoria();
 
 //Datos Generales x Archivo
 $type_sys = SYS;
-$htmlTitulo = 'Módulo de Productos';
+$htmlTitulo = 'Módulo de Categorías';
 
 
 // Inicializa variable.
@@ -90,7 +90,7 @@ $htmlOptionsCategoria = '';
                 }
 
                 if($result == 1){
-                    $msg = time_alert_text('success',3000,'Se han eliminado <b>'.$count_check.'</b> registros.');
+                    $msg = time_alert_text('success',1500,'Se han eliminado <b>'.$count_check.'</b> registros.');
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -104,20 +104,15 @@ $htmlOptionsCategoria = '';
             case 'agregar-exe':
 
                 $arg = array(
-                    $producto_nombre
-                    ,$producto_identificador
-                    ,$producto_foto
-                    ,$producto_precio
-                    ,$producto_descuento
-                    ,$producto_fecha
-                    ,$categoria_id
-                    ,$tipo_id
+                    $categoria_nombre
+                    ,$categoria_foto
+                    ,$categoria_detalle
                     );
 
                 $result = $obj->agregar($arg);
 
                 if($result == 1){
-                    $msg = time_alert_text('success',4000,'Se guardaron los datos correctamente.');
+                    $msg = time_alert_text('success',1500,'Se guardaron los datos correctamente.');
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -125,23 +120,19 @@ $htmlOptionsCategoria = '';
 
             case 'modificar-exe':
                 $arg = array(
-                        'id' => $producto_id
+                        'id' => $categoria_id
                         ,'fields' => array(
-                          $producto_nombre
-                          ,$producto_identificador
-                          ,$producto_foto
-                          ,$producto_precio
-                          ,$producto_descuento
-                          ,$categoria_id
-                          ,$tipo_id
+                            $categoria_nombre
+                            ,$categoria_foto
+                            ,$categoria_detalle
                         )
                     );
-                   
+                
                 $result = $obj->editar($arg);
 
                 if($result == 1){
-                    $msg = time_alert_text('success',3000,'Se guardaron los datos correctamente.En breve será redireccionado...');
-                    $msg.= script_redirect('producto.php',3000);
+                    $msg = time_alert_text('success',2000,'Se guardaron los datos correctamente.En breve será redireccionado...');
+                    $msg.= script_redirect('categoria.php',2000);
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -169,18 +160,16 @@ $htmlOptionsCategoria = '';
 
                 $result = $obj->listarxId($btn_id);
 
+
+       
                 foreach($result as $col){
-                   $producto_id = $col['producto_id'];
-                   $producto_nombre =  $col['producto_nombre'];
-                   $producto_identificador =  $col['producto_identificador'];
-                   $producto_foto =  $col['producto_foto'];
-                   $producto_precio =  $col['producto_precio'];
-                   $producto_descuento =  $col['producto_descuento'];
-                   $categoria_id =  $col['categoria_id'];
-                   $tipo_id =  $col['tipo_id'];
+                   $categoria_id = $col['categoria_id'];
+                   $categoria_nombre =  $col['categoria_nombre'];
+                   $categoria_foto =  $col['categoria_foto'];
+                   $categoria_detalle =  $col['categoria_detalle'];
                 }
 
-                $título_form = 'Modificar: <b style="color: #EB2929;"> ID: '.$producto_id.' Nombre: '.$producto_nombre.'/ Identificador: '.$producto_identificador.'</b>';
+                $título_form = 'Modificar: <b style="color: #EB2929;"> ID: '.$categoria_id.'/ Nombre: '.$categoria_nombre.'</b>';
 
             break;
         }
@@ -191,28 +180,6 @@ $htmlOptionsCategoria = '';
 // @Section-3 :> Eventos de BD: select y otros casos generales/globales | todas las vistas
 
     #Funcionalidades generales/globales (aplica como default ante cualquier evento)
-
-    //Listado de Categorias
-    $selectCategorias = array(
-        'option'            => 'group'
-        ,'select-name'      => 'categoria_id'
-        ,'select-required'  => '1'
-        ,'selected-value'   => $categoria_id
-        ,'btn-name'         => 'btn-op'
-        ,'btn-text'         => ''
-    );
-    $listaCategorias = $obj->listaCategorias($selectCategorias);
-
-    $selectTipo = array(
-        'option'            => 'group'
-        ,'select-name'      => 'tipo_id'
-        ,'select-required'  => '1'
-        ,'selected-value'   => $tipo_id
-        ,'btn-name'         => 'btn-op'
-        ,'btn-text'         => ''
-    );
-    $listaTipos = $obj->listaTipos($selectTipo);
-
     //Listado de usuarios activos
     $htmlDinamicList_1 = $obj->listaActivos($limit,$page,$btn_op);
 

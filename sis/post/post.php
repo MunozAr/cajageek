@@ -251,46 +251,103 @@ if(isset($_FILES['producto_foto']['tmp_name']) && $_FILES['producto_foto']['tmp_
 	$producto_foto = $_POST['producto_foto_c'];
 }
 
-/*PROYECTO-DEPARTAMENTO*/
+/*BANNERS*/
 
-if(isset($_POST['departamento_id'])){
-	$departamento_id = htmlspecialchars($_POST['departamento_id']);
+if(isset($_POST['banner_id'])){
+	$banner_id = htmlspecialchars($_POST['banner_id']);
 }
 
-if(isset($_POST['departamento_nombre'])){
-	$departamento_nombre = htmlspecialchars($_POST['departamento_nombre']);
+if(isset($_POST['banner_nombre'])){
+	$banner_nombre = htmlspecialchars($_POST['banner_nombre']);
 }
-if(isset($_POST['departamento_metraje'])){
-	$departamento_metraje = htmlspecialchars($_POST['departamento_metraje']);
+if(isset($_POST['banner_link'])){
+	$banner_link = htmlspecialchars($_POST['banner_link']);
 }
-if(isset($_POST['departamento_caracteristicas'])){
-	$departamento_caracteristicas = htmlspecialchars($_POST['departamento_caracteristicas']);
+if(isset($_POST['banner_activo'])){
+	$banner_activo = htmlspecialchars($_POST['banner_activo']);
 }
 /*Imagen de Departamento*/
-$newdepartamento = date("YmdHis");
+$newbanner = date("YmdHis");
 $maxsize = 5000 * 6000;
-$newfile_img = $newdepartamento.'.jpg';
+$newfile_img = $newbanner.'.jpg';
 
-$img_temp = $_FILES['departamento_imagen']['tmp_name'];
+$img_temp = $_FILES['banner_imagen']['tmp_name'];
 
-if(isset($_FILES['departamento_imagen']['tmp_name']) && $_FILES['departamento_imagen']['tmp_name']!=''){
-	if (!empty($_FILES['departamento_imagen']['name'])) {
-		if ($_FILES['departamento_imagen']['size'] <= $maxsize) {
-			$productoURL = "app/img/departamentos/";
-			if (!move_uploaded_file($_FILES['departamento_imagen']['tmp_name'], $productoURL . $newfile_img));
-			@unlink("app/img/departamentos/".$departamento_imagen_c);
-			$departamento_imagen = $newfile_img;
+if(isset($_FILES['banner_imagen']['tmp_name']) && $_FILES['banner_imagen']['tmp_name']!=''){
+	if (!empty($_FILES['banner_imagen']['name'])) {
+		if ($_FILES['banner_imagen']['size'] <= $maxsize) {
+			$productoURL = "../../assets/img/banners/";
+			if (!move_uploaded_file($_FILES['banner_imagen']['tmp_name'], $productoURL . $newfile_img));
+			@unlink("../../assets/img/banners/".$banner_imagen_c);
+			$banner_imagen = $newfile_img;
 		}else{
-		//	$departamento_imagen = $_POST['departamento_imagen_c'];
+		//	$banner_imagen = $_POST['banner_imagen_c'];
 		}
 	}
 }else{
-	$departamento_imagen =  $_POST['departamento_imagen_c'];
+	$banner_imagen =  $_POST['banner_imagen_c'];
 }
 
-if(isset($_POST['departamento_estado'])){
-	$departamento_estado = htmlspecialchars($_POST['departamento_estado']);
+
+/*CATEGORIAS*/
+
+if(isset($_POST['categoria_id'])){
+	$categoria_id = htmlspecialchars($_POST['categoria_id']);
 }
+
+if(isset($_POST['categoria_nombre'])){
+	$categoria_nombre = htmlspecialchars($_POST['categoria_nombre']);
+}
+if(isset($_POST['categoria_detalle'])){
+	$categoria_detalle = htmlspecialchars($_POST['categoria_detalle']);
+}
+if(isset($_POST['categoria_activo'])){
+	$categoria_activo = htmlspecialchars($_POST['categoria_activo']);
+}
+if(isset($_POST['categoria_fecha'])){
+	$categoria_fecha = htmlspecialchars($_POST['categoria_fecha']);
+}
+/*Imagen de Departamento*/
+$newcategory = date("YmdHis");
+$maxsize = 5000 * 6000;
+$newfile_img = $newcategory.'.jpg';
+
+$img_temp = $_FILES['categoria_foto']['tmp_name'];
+
+if(isset($_FILES['categoria_foto']['tmp_name']) && $_FILES['categoria_foto']['tmp_name']!=''){
+	if (!empty($_FILES['categoria_foto']['name'])) {
+		if ($_FILES['categoria_foto']['size'] <= $maxsize) {
+			$productoURL = "../../assets/img/categorias/";
+			if (!move_uploaded_file($_FILES['categoria_foto']['tmp_name'], $productoURL . $newfile_img));
+			@unlink("../../assets/img/categorias/".$categoria_foto_c);
+			$categoria_foto = $newfile_img;
+		}else{
+		//	$categoria_foto = $_POST['categoria_foto_c'];
+		}
+	}
+}else{
+	$categoria_foto =  $_POST['categoria_foto_c'];
+}
+
+
+/*TIPOS*/
+if(isset($_POST['tipo_id'])){
+	$tipo_id = htmlspecialchars($_POST['tipo_id']);
+}
+
+if(isset($_POST['tipo_nombre'])){
+	$tipo_nombre = htmlspecialchars($_POST['tipo_nombre']);
+}
+if(isset($_POST['tipo_detalle'])){
+	$tipo_detalle = htmlspecialchars($_POST['tipo_detalle']);
+}
+if(isset($_POST['tipo_activo'])){
+	$tipo_activo = htmlspecialchars($_POST['tipo_activo']);
+}
+if(isset($_POST['tipo_fecha'])){
+	$tipo_fecha = htmlspecialchars($_POST['tipo_fecha']);
+}
+
 
 
 ?>

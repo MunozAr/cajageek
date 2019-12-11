@@ -1,4 +1,4 @@
-<?php require_once '../controller/producto.controller.php'; ?>
+<?php require_once '../controller/banner.controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>::Módulo de Productos::</title>
+    <title>::Módulo de Categorias::</title>
     <link rel="stylesheet" type="text/css" href="app/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="app/css/style.css">
     <link rel="stylesheet" type="text/css" href="../lib/fileinput/css/fileinput.css">
@@ -99,10 +99,10 @@
                           <div class="sec-img-actual">
                             <div class="col-xs-12">
                               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-                                <img class="img-responsive" src="../../assets/img/productos/<?= $producto_foto; ?>">
+                                <img class="img-responsive" src="../../assets/img/banners/<?= $banner_imagen; ?>">
                                 <br>
                                 <p>Imagen Portada del Producto</p>
-                                <small><?= $producto_foto; ?></small>
+                                <small><?= $banner_imagen; ?></small>
                               </button>
                             </div>
 
@@ -111,10 +111,10 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="exampleModalLabel">Imagen: <?= $producto_foto; ?></h4>
+                                    <h4 class="modal-title" id="exampleModalLabel">Imagen: <?= $banner_imagen; ?></h4>
                                   </div>
                                   <div class="modal-body">
-                                    <img class="img-responsive" src="../../assets/img/productos/<?= $producto_foto; ?>">
+                                    <img class="img-responsive" src="../../assets/img/banners/<?= $banner_imagen; ?>">
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -132,52 +132,29 @@
                               <div class="col-xs-12 col-md-6">
                                 <div class="section-input">
                                   <label>Imagen:</label>
-                                  <input type="file" class="form-control btn-success" name="producto_foto" value="<?= $producto_foto ?>" id="producto_foto" accept="image/*" value="">
+                                  <input type="file" class="form-control btn-success" name="banner_imagen" value="<?= $banner_imagen ?>" id="banner_imagen" accept="image/*" value="">
                                 </div>
                               </div>
                               <div class="col-md-4">
                                 <div class="section-input">
                                   <label>Nombre:</label>
-                                  <input type="text" class="form-control" name="producto_nombre" value="<?= $producto_nombre; ?>">
+                                  <input type="text" class="form-control" name="banner_nombre" value="<?= $banner_nombre; ?>">
                                 </div>
                               </div>
                               <div class="col-xs-12">
                                 <div class="section-input">
                                   <label>Identificador:</label>
-                                  <input type="text" class="form-control" name="producto_identificador" value="<?= $producto_identificador; ?>">
-                                </div>
-                              </div>
-                              <div class="col-xs-12">
-                                <div class="section-input">
-                                  <label>Precio:</label>
-                                  <input type="text" class="form-control" name="producto_precio" value="<?= $producto_precio; ?>">
-                                </div>
-                              </div>
-                              <div class="col-xs-12">
-                                <div class="section-input">
-                                  <label>Descuento:</label>
-                                  <input type="text" class="form-control" name="producto_descuento" value="<?= $producto_descuento; ?>">
+                                  <input type="text" class="form-control" name="banner_link" value="<?= $banner_link; ?>">
                                 </div>
                               </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="section-input">
-                                  <label>Elija la Categoría del Producto</label>
-                                  <?= $listaCategorias; ?>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                                <div class="section-input">
-                                  <label>Elija el Tipo del Producto</label>
-                                  <?= $listaTipos; ?>
-                                </div>
-                            </div>
+                            
                             <!-- fin -->
 
 
                             <!-- hidden obj -->
-                            <input type="hidden"  autocomplete="off" name="producto_id" value="<?= $producto_id; ?>">
-                            <input type="hidden"  autocomplete="off" name="producto_foto_c" value="<?= $producto_foto; ?>">
+                            <input type="hidden"  autocomplete="off" name="banner_id" value="<?= $banner_id; ?>">
+                            <input type="hidden"  autocomplete="off" name="banner_imagen_c" value="<?= $banner_imagen; ?>">
 
 
                             <input type="hidden"  autocomplete="off" value="<?= $btn_op_text; ?>/<?= $btn_op; ?>/<?= $valor_filtro; ?>/<?= $valor_pagina; ?>">
@@ -188,7 +165,7 @@
                                     Guardar <span class="glyphicon glyphicon-saved" style="font-size:14px;"></span>
                                   </button>
 
-                                  <button type="button" class="btn btn-danger" onclick="document.location=('producto.php');">
+                                  <button type="button" class="btn btn-danger" onclick="document.location=('banner.php');">
                                     Regresar <span class="glyphicon glyphicon-remove" style="font-size:14px;"></span>
                                   </button>
                                 </div>

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 error_reporting(0);
 // Obligatorios
@@ -15,11 +16,11 @@ include '../common/theme.php';// archivo que actualiza el tema.
 
 
 // Inicia objeto de clase
-$obj = new Producto();
+$obj = new Banner();
 
 //Datos Generales x Archivo
 $type_sys = SYS;
-$htmlTitulo = 'Módulo de Productos';
+$htmlTitulo = 'Módulo de Banners';
 
 
 // Inicializa variable.
@@ -90,7 +91,7 @@ $htmlOptionsCategoria = '';
                 }
 
                 if($result == 1){
-                    $msg = time_alert_text('success',3000,'Se han eliminado <b>'.$count_check.'</b> registros.');
+                    $msg = time_alert_text('success',1500,'Se han eliminado <b>'.$count_check.'</b> registros.');
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -104,20 +105,15 @@ $htmlOptionsCategoria = '';
             case 'agregar-exe':
 
                 $arg = array(
-                    $producto_nombre
-                    ,$producto_identificador
-                    ,$producto_foto
-                    ,$producto_precio
-                    ,$producto_descuento
-                    ,$producto_fecha
-                    ,$categoria_id
-                    ,$tipo_id
+                    $banner_nombre
+                    ,$banner_imagen
+                    ,$banner_link
                     );
 
                 $result = $obj->agregar($arg);
 
                 if($result == 1){
-                    $msg = time_alert_text('success',4000,'Se guardaron los datos correctamente.');
+                    $msg = time_alert_text('success',1500,'Se guardaron los datos correctamente.');
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -125,23 +121,19 @@ $htmlOptionsCategoria = '';
 
             case 'modificar-exe':
                 $arg = array(
-                        'id' => $producto_id
+                        'id' => $banner_id
                         ,'fields' => array(
-                          $producto_nombre
-                          ,$producto_identificador
-                          ,$producto_foto
-                          ,$producto_precio
-                          ,$producto_descuento
-                          ,$categoria_id
-                          ,$tipo_id
+                            $banner_nombre
+                            ,$banner_imagen
+                            ,$banner_link
                         )
                     );
-                   
+                    
                 $result = $obj->editar($arg);
 
                 if($result == 1){
-                    $msg = time_alert_text('success',3000,'Se guardaron los datos correctamente.En breve será redireccionado...');
-                    $msg.= script_redirect('producto.php',3000);
+                    $msg = time_alert_text('success',2000,'Se guardaron los datos correctamente.En breve será redireccionado...');
+                    $msg.= script_redirect('banner.php',2000);
                 }else{
                     $msg = alert_text('danger','Hubo un error, informar a los encargados.');
                 }
@@ -169,18 +161,16 @@ $htmlOptionsCategoria = '';
 
                 $result = $obj->listarxId($btn_id);
 
+
+         
                 foreach($result as $col){
-                   $producto_id = $col['producto_id'];
-                   $producto_nombre =  $col['producto_nombre'];
-                   $producto_identificador =  $col['producto_identificador'];
-                   $producto_foto =  $col['producto_foto'];
-                   $producto_precio =  $col['producto_precio'];
-                   $producto_descuento =  $col['producto_descuento'];
-                   $categoria_id =  $col['categoria_id'];
-                   $tipo_id =  $col['tipo_id'];
+                   $banner_id = $col['banner_id'];
+                   $banner_nombre =  $col['banner_nombre'];
+                   $banner_imagen =  $col['banner_imagen'];
+                   $banner_link =  $col['banner_link'];
                 }
 
-                $título_form = 'Modificar: <b style="color: #EB2929;"> ID: '.$producto_id.' Nombre: '.$producto_nombre.'/ Identificador: '.$producto_identificador.'</b>';
+                $título_form = 'Modificar: <b style="color: #EB2929;"> ID: '.$banner_id.' Nombre: '.$banner_nombre.'</b>';
 
             break;
         }
@@ -191,28 +181,6 @@ $htmlOptionsCategoria = '';
 // @Section-3 :> Eventos de BD: select y otros casos generales/globales | todas las vistas
 
     #Funcionalidades generales/globales (aplica como default ante cualquier evento)
-
-    //Listado de Categorias
-    $selectCategorias = array(
-        'option'            => 'group'
-        ,'select-name'      => 'categoria_id'
-        ,'select-required'  => '1'
-        ,'selected-value'   => $categoria_id
-        ,'btn-name'         => 'btn-op'
-        ,'btn-text'         => ''
-    );
-    $listaCategorias = $obj->listaCategorias($selectCategorias);
-
-    $selectTipo = array(
-        'option'            => 'group'
-        ,'select-name'      => 'tipo_id'
-        ,'select-required'  => '1'
-        ,'selected-value'   => $tipo_id
-        ,'btn-name'         => 'btn-op'
-        ,'btn-text'         => ''
-    );
-    $listaTipos = $obj->listaTipos($selectTipo);
-
     //Listado de usuarios activos
     $htmlDinamicList_1 = $obj->listaActivos($limit,$page,$btn_op);
 

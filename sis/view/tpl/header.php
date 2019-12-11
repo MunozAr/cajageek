@@ -6,7 +6,21 @@ switch(URL){
     $filenameBtnAdd = 'producto-form.php';
     $venderAccion = 'display:none';
   break;
-
+  case 'banner.php':
+    $idBtnAdd = 'callFormRight-2';
+    $filenameBtnAdd = 'banner-form.php';
+    $venderAccion = 'display:none';
+  break;
+  case 'categoria.php':
+    $idBtnAdd = 'callFormRight-2';
+    $filenameBtnAdd = 'banner-form.php';
+    $venderAccion = 'display:none';
+  break;
+  case 'tipo.php':
+    $idBtnAdd = 'callFormRight-2';
+    $filenameBtnAdd = 'banner-form.php';
+    $venderAccion = 'display:none';
+  break;
   case 'departamento.php':
     $idBtnAdd = 'callFormRight-2';
     $filenameBtnAdd = 'departamento-form.php';
@@ -26,7 +40,7 @@ switch(URL){
     <div class="col-xs-6 col-md-8">
       <center>
         <a class="" href="inicio.php">
-          <img src="app/img/logoMuralla.png">
+          <img src="app/img/logoCajeGeek.png">
         </a>
       </center>
     </div>
@@ -41,7 +55,7 @@ switch(URL){
 
 
 <nav class="navbar navbar-inverse top-bar navbar-fixed-top" style="box-shadow: 0px 0px 4px black;">
-  <div class="container-fluid">
+  <!--div class="container-fluid">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
       <i class="fa fa-cog" style="color"></i>
@@ -51,14 +65,21 @@ switch(URL){
           <i class="fa fa-bars" aria-hidden="true" id="chang-menu-icon"></i>
     </span>
     </div>
-    </div>
-    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
-        <ul class="nav navbar-nav">
+    </div -->
+    <div class="nav navbar-right " id="myNavbar">
+        <ul class="nav navbar-nav col-xs-12">
+        <li class="op-menu">
+            <a href="inicio.php" class="btn btn-danger">
+              Inicio
+            </a>
+          </li>
           <li class="op-menu">
             <button type="button" class="btn-no hidden-xs" id="<?= $idBtnAdd; ?>">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               Agregar
             </button>
+          </li>
+          <li class="op-menu">
             <button type="submit" form="principal-form" class="btn-no visible-xs" formaction="<?= $filenameBtnAdd; ?>" name="btn-op-form" value="agregar-form">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               Agregar

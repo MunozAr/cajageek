@@ -387,8 +387,7 @@ class generalQuery extends ConexionBD
 		$rpta = $result->execute();
 
         return $rpta;
-	}
-
+    }
 //Fin
 
 }
