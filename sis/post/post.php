@@ -348,6 +348,33 @@ if(isset($_POST['tipo_fecha'])){
 	$tipo_fecha = htmlspecialchars($_POST['tipo_fecha']);
 }
 
+/*TIPOS*/
+if(isset($_POST['pdetalle_id'])){
+	$pdetalle_id = htmlspecialchars($_POST['pdetalle_id']);
+}
+if(isset($_POST['pdetalle_descripcion'])){
+	$pdetalle_descripcion = htmlspecialchars($_POST['pdetalle_descripcion']);
+}
+if(isset($_POST['pdetalle_caracteristicas'])){
+	$pdetalle_caracteristicas = htmlspecialchars($_POST['pdetalle_caracteristicas']);
+}
+if(isset($_POST['pdetalle_fotos'])){
+	$pdetalle_fotos = htmlspecialchars($_POST['pdetalle_fotos']);
+}
+if(isset($_POST['pdetalle_tamanos'])){
+	$pdetalle_tamanos = htmlspecialchars($_POST['pdetalle_tamanos']);
+}
+if(isset($_POST['pdetalle_colores'])){
+	$pdetalle_colores = htmlspecialchars($_POST['pdetalle_colores']);
+}
+if(isset($_POST['pdetalle_precios'])){
+	$pdetalle_precios = htmlspecialchars($_POST['pdetalle_precios']);
+}
+if(isset($_POST['pdetalle_fecha'])){
+	$pdetalle_fecha = htmlspecialchars($_POST['pdetalle_fecha']);
+}
+
+
 
 
 ?>

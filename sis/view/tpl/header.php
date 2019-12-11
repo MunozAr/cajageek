@@ -4,27 +4,27 @@ switch(URL){
   case 'producto.php':
     $idBtnAdd = 'callFormRight-2';
     $filenameBtnAdd = 'producto-form.php';
-    $venderAccion = 'display:none';
+    $desactivar = '';
   break;
   case 'banner.php':
     $idBtnAdd = 'callFormRight-2';
     $filenameBtnAdd = 'banner-form.php';
-    $venderAccion = 'display:none';
+    $desactivar = '';
   break;
   case 'categoria.php':
     $idBtnAdd = 'callFormRight-2';
-    $filenameBtnAdd = 'banner-form.php';
-    $venderAccion = 'display:none';
+    $filenameBtnAdd = 'categoria-form.php';
+    $desactivar = '';
   break;
   case 'tipo.php':
     $idBtnAdd = 'callFormRight-2';
-    $filenameBtnAdd = 'banner-form.php';
-    $venderAccion = 'display:none';
+    $filenameBtnAdd = 'tipo-form.php';
+    $desactivar = '';
   break;
-  case 'departamento.php':
+  case 'producto_detalle.php':
     $idBtnAdd = 'callFormRight-2';
-    $filenameBtnAdd = 'departamento-form.php';
-    $venderAccion = '';
+    $filenameBtnAdd = 'pdetalle-form.php';
+    $desactivar = 'display:none';
   break;
 }
 
@@ -85,13 +85,7 @@ switch(URL){
               Agregar
             </button>
           </li>
-          <li class="op-menu" style="<?= $venderAccion; ?>">
-              <button type="submit" form="principal-form" name="btn-op-2" value="vender-exe/<?= $btn_op; ?>//<?= $page; ?>" class="btn-no" title="Vender Seleccionados">
-                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-                Vender
-              </button>
-          </li>
-          <li class="op-menu">
+          <li class="op-menu" style="<?= $desactivar; ?>">
               <button type="submit" form="principal-form" name="btn-op-2" value="desactivar-exe/<?= $btn_op; ?>//<?= $page; ?>" class="btn-no" title="Desactivar seleccionados">
                 <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                 Desactivar
@@ -103,7 +97,7 @@ switch(URL){
                 Eliminar
               </button>
           </li>
-          <li class="op-menu">
+          <li class="op-menu" style="<?= $desactivar; ?>">
             <button type="button" class="btn-no" id="btn-view-des">
               <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
               Ver desactivados

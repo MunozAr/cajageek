@@ -140,12 +140,16 @@ var navSelector = new Vue({
   },
   computed: {
     filterProducts() {
+    
       if(this._isContains(this.checkedType,'Discount')){
-         return this.products.filter(f => f.producto_descuento > 0);
+         return this.products = this.products.filter(f => f.producto_descuento > 0);
       }
       if (!this.checkedType.length)
         return this.products = this.allProducts;
-        return this.products.filter(f => this.checkedType.includes(f.tipo_id));
+      
+        return this.products = this.products.filter(f => this.checkedType.includes(f.tipo_id));
+      
+    
     },
   }
 });

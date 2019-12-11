@@ -1638,5 +1638,374 @@
 
     }
 
+    class DetalleProducto extends View
+    {
+
+        //TABLAS
+        private function table_config($estado)
+        {
+            if($estado=='activo'){
+                $check_all = '
+                    <div class="checkbox checkbox-info">
+                      <input id="check-all" type="checkbox" class="check_id">
+                      <label for="check-all" title="Seleccionar todos" class="chk-all"></label>
+                    </div>
+                ';
+
+                $estado='<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:green;font-size:20px;"></span>';
+
+            }else if($estado=='no-activo'){
+                $check_all="#";
+                $estado = '<span class="glyphicon glyphicon-remove" aria-hidden="true" style="color:red;font-size:20px;"></span>';
+            }
+
+            $table = array(
+                "col-0"=>array(
+                    "head"=>$check_all
+                    ,"body"=>array(
+                            "type"=>"element-form"
+                            ,"data"=>array(
+                                    "element"=>"checkbox"
+                                    ,"row"=>"pdetalle_id"
+                                    ,"id"=>"user-check-"
+                                    ,"name"=>"check-id[]"
+                                )
+                        )
+                    )
+                ,
+                "col-1"=>array(
+                    "head"=>"Nombre del Producto"
+                    ,"body"=>array(
+                            "type"=>"text"
+                            ,"data"=>array(
+                                    "row"=>array("producto_nombre")
+                                )
+                        )
+                    )
+                ,
+                "col-2"=>array(
+                    "head"=>"Descripción"
+                    ,"body"=>array(
+                            "type"=>"text"
+                            ,"data"=>array(
+                                    "row"=>array("pdetalle_descripcion")
+                                )
+                        )
+                    )
+                ,
+                "col-3"=>array(
+                    "head"=>"Tamaños"
+                    ,"body"=>array(
+                            "type"=>"text"
+                            ,"data"=>array(
+                                    "row"=>array("pdetalle_tamanos")
+                                )
+                        )
+                    )
+                ,
+                "col-4"=>array(
+                    "head"=>"Colores"
+                    ,"body"=>array(
+                            "type"=>"text"
+                            ,"data"=>array(
+                                    "row"=>array("pdetalle_colores")
+                                )
+                        )
+                    )
+                ,
+                "col-5"=>array(
+                    "head"=>"Modificar"
+                    ,"body"=>array(
+                            "type"=>"element-form"
+                            ,"data"=>array(
+                                    "element"=>"button"
+                                    ,"type"=>"submit"
+                                    ,"row"=>"pdetalle_id"
+                                    ,"btn-op"=>"modificar-form"
+                                    ,"class"=>"success btn-sm"
+                                    ,"formaction"=>"producto_detalle-form.php"
+                                    ,"name"=>"btn-op-form"
+                                    ,"icon"=>"pencil"
+                                    ,"text"=>""
+                                )
+                        )
+                    )
+            );
+
+
+            return $table;
+
+        }
+
+        //Métodos de clase Categoría
+
+        #1
+        public function listaActivos($limit,$page,$btn_op)
+        {
+            # Inicia variables
+            $lista = '';
+
+            # Datos Paginador
+            $offset = $page*$limit;
+
+            #Table Config
+            $config=array(
+                    "title"=>"Listado de Productos"
+                    ,"icon"=>"th-list"
+                    ,"visible"=>"block"
+                    ,"btn-op"=>$btn_op
+            );
+
+            #Query
+            $query = array(
+                "consult"=>array(
+                    'tables'=>array(
+                        array('productos','p')
+                        ,array('producto_detalle','d')
+                    ),
+                    'relation'=>array(
+                        array('d.producto_id','p.producto_id')
+                    ),
+                    'conditional'=>array(
+                        array('','p.producto_activo','=','1')
+                    ),
+                    'order'=>array(
+                        array('order by','p.producto_id','ASC')
+                    ),
+                    'limit'=>array(
+                        array($limit,$offset)
+                    )
+                )
+                ,"count"=>array(
+                    'tables'=>array(
+                        array('producto_detalle','d')
+                        ),
+                    'operation'=>array(
+                        array('COUNT','d.pdetalle_id','paginator_count')
+                        ),
+                    'conditional'=>array(
+                    )
+                )
+                ,"limit"=>$limit
+                ,"offset"=>$offset
+                ,"page"=>$page
+            );
+
+            #Table
+            $table = $this->table_config('activo');
+            // Empleamos el metodo dinamicTable
+            $lista = $this->dinamicTable($config,$table,$query);
+            return $lista;
+        }
+
+        #2
+        public function buscar($value,$btn_op)
+        {
+            # Inicia variables
+            $lista = '';
+
+            # Datos Paginador
+            $offset = $page*$limit;
+
+            #Table Config
+            $config=array(
+                    "title"=>'Lista de Categorías <a class="btn-danger" href="producto_detalle.php" style="float:right;"><span class="glyphicon glyphicon-remove"></span> Cancelar Búsqueda</a>'
+                    ,"icon"=>"th-list"
+                    ,"visible"=>"block"
+                    ,"btn-op"=>$btn_op
+            );
+
+            #Query
+            $query = array(
+                "consult"=>array(
+                    'tables'=>array(
+                        array('producto_detalle','d')
+                        ,array('productos','p')
+                    ),
+                    'relation'=>array(
+                        array('d.producto_id','p.producto_id')
+                    ),
+                    'conditional' => array(
+                        array('','p.producto_nombre','like','CONCAT("%","'.$value.'","%")')
+                    )
+                )
+            );
+
+            #Table
+            $table = $this->table_config('activo');
+
+
+            // Empleamos el metodo dinamicTable
+            $lista = $this->dinamicTable($config,$table,$query);
+            return $lista;
+        }
+
+        #8
+        public function eliminar($id)
+        {
+            #Query
+            $arg = array(
+                'tables'=>array(
+                    array('productos')
+                ),
+                'conditional'=>array(
+                    array('','producto_id',$id)
+                )
+            );
+
+            $update=$this->deleteRegister($arg);
+
+            return $update;
+        }
+
+         #9
+        public function agregar($value)
+        {
+          
+            $pdetalle_descripcion = $value[0];
+            $pdetalle_caracteristicas = $value[1];
+            $pdetalle_fotos = $value[2];
+            $pdetalle_tamanos= $value[3];
+            $pdetalle_colores = $value[4];
+            $pdetalle_precios = $value[5];
+            $producto_id = $value[6];
+
+            $arg = array(
+                    'tables'=>array(
+                            array('producto_detalle')
+                        ),
+                    'fields'=>array(
+                            array('pdetalle_descripcion',$pdetalle_nombre)
+                            ,array('pdetalle_caracteristicas',$pdetalle_identificador)
+                            ,array('pdetalle_fotos',$pdetalle_foto)
+                            ,array('pdetalle_tamanos',$pdetalle_precio)
+                            ,array('pdetalle_colores',$pdetalle_descuento)
+                            ,array('pdetalle_precios',$pdetalle_fecha)
+                            ,array('producto_id',$producto_id)
+                        )
+                );
+            $add = $this->addRegister($arg);
+
+            return $add;
+        }
+
+        #10
+        public function listarxId($id)
+        {
+
+            $arg = array(
+                'tables'=>array(
+                    array('producto_detalle','d')
+                    ),
+                'conditional' => array(
+                    array('','d.pdetalle_id','=',$id)
+                    )
+                );
+
+            $this->setSelectArg($arg);
+            $result = $this->selectData();
+
+            return $result;
+        }
+
+        #11
+        public function editar($arg)
+        {
+            
+            $pdetalle_id = $arg['id'];
+            $pdetalle_descripcion = $arg['fields'][0];
+            $pdetalle_caracteristicas = $arg['fields'][1];
+            $pdetalle_fotos = $arg['fields'][2];
+            $pdetalle_tamanos = $arg['fields'][3];
+            $pdetalle_colores = $arg['fields'][4];
+            $pdetalle_precios = $arg['fields'][5];
+            $producto_id = $arg['fields'][6];
+
+            #Query
+            $arg = array(
+                'tables'=>array(
+                    //array('tabla')
+                    array('producto_detalle')
+                ),
+                'fields'=>array(
+                    //array('campo','valor')
+                    array('pdetalle_descripcion',$pdetalle_descripcion)
+                    ,array('pdetalle_caracteristicas',$pdetalle_caracteristicas)
+                    ,array('pdetalle_fotos',$pdetalle_fotos)
+                    ,array('pdetalle_tamanos',$pdetalle_tamanos)
+                    ,array('pdetalle_colores',$pdetalle_colores)
+                    ,array('pdetalle_precios',$pdetalle_precios)
+                    ,array('producto_id',(int)$producto_id)
+                ),
+                'conditional'=>array(
+                    //array('operador: VACIO, AND ó OR','campo','valor')
+                    array('','pdetalle_id',$pdetalle_id)
+                )
+            );
+
+      
+            $update=$this->editRegister($arg);
+
+            return $update;
+        }
+
+
+        public function listaTipo($categoria_categoria)
+        {
+
+            if($tipo_id==1){
+                $selected1 = 'selected';
+                $selected2 = '';
+            }else if($tipo_id == 2){
+                $selected1 = '';
+                $selected2 = 'selected';
+            }else{
+                $selected1 = '';
+                $selected2 = '';
+            }
+
+
+            $htmlSelect = '
+                <option '.$selected1.' value="1">SI</option>
+                <option '.$selected2.' value="2">NO</option>
+            ';
+            return $htmlSelect;
+        }
+
+        public function listaDeProyectos()
+        {
+            $arg = array(
+                    'tables'=>array(
+                            array('productos','p')
+                        )
+                );
+
+            $fields = array(
+                    array('producto_id','producto_nombre','producto_identificador','producto_foto','producto_precio','producto_descuento','producto_fecha','categoria_id','tipo_id','producto_activo')
+                );
+                
+            return $fields;
+
+        }
+
+        public function listaProductos($options)
+        {
+            $arg = array(
+                    'tables'=>array(
+                            array('productos','p')
+                        )
+                );
+
+            $fields = array(
+                    array('producto_id','producto_nombre')
+                );
+
+            $lista = $this->htmlListOption($options,$arg,$fields);
+
+            return $lista;
+        }
+
+    }
+
 
 ?>

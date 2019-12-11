@@ -100,9 +100,9 @@
 
 <script>
 var categorias = new Swiper('.categories-container', {
-      slidesPerView: 4,
+      slidesPerView: 8,
       centeredSlides: true,
-      spaceBetween: 30,
+      spaceBetween: 0,
       grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
@@ -177,12 +177,16 @@ var productos = new Vue({
   },
   computed: {
     filterProducts() {
+      
       if(this._isContains(this.checkedType,'Discount')){
-         return this.products.filter(f => f.producto_descuento > 0);
+        return this.products =  this.products.filter(f => f.producto_descuento > 0);
       }
-      if (!this.checkedType.length)
-        return this.products = this.allProducts;
-        return this.products.filter(f => this.checkedType.includes(f.tipo_id));
+      if (!this.checkedType.length){
+        return this.products =  this.products = this.allProducts;
+      }
+        
+      return  this.products = this.products.filter(f => this.checkedType.includes(f.tipo_id));
+      
     },
   }, 
 

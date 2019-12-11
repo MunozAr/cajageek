@@ -1,4 +1,4 @@
-<?php require_once '../controller/categoria.controller.php'; ?>
+<?php require_once '../controller/pdetalle.controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>::Módulo de Categorias::</title>
+    <title>::Módulo de Productos::</title>
     <link rel="stylesheet" type="text/css" href="app/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="app/css/summernote.css">
     <link rel="stylesheet" type="text/css" href="app/css/style.css">
     <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
     <script src="app/js/jquery.js"></script>
     <script src="app/js/bootstrap.js"></script>
     <script src="app/js/summernote.js"></script>
     <script src="app/js/app.js"></script>
+    <script src="app/js/duplicateFields.min.js"></script>
     <style type="text/css">
       /* TEMA */
       <?= $styleMask; ?>
@@ -113,19 +113,32 @@
           
           <div class="obj-form">         
             <div class="section-input">
-              <label>Nombre de la categoria</label>
-                <input type="text" class="form-control" name="categoria_nombre" required>
+              <label>Ingrese Nombre</label>
+                <input type="text" class="form-control" name="producto_nombre" required>
+            </div>
+            <div class="section-input">
+              <label>Ingrese Identificiador:</label>
+              <input type="text" class="form-control" name="producto_identificador" required>
             </div>
             <div class="section-input">
               <label>Subir Imagen:</label>
-              <input type="file" class="form-control btn-success" name="categoria_foto" id="categoria_foto" accept="image/*" value="" required>
-                <small><b>Nota:</b> Medidas recomendadas: Aun no se sabe</small>
+              <input type="file" class="form-control btn-success" name="producto_foto" id="producto_foto" accept="image/*" value="" required>
+                <small><b>Nota:</b> Medidas recomendadas: 552x552</small>
             </div>
             <div class="section-input">
-              <label>Detalle de Categoría:</label>
-              <textarea id="categoriaDetalle" type="text" class="form-control prod-txta" name="categoria_detalle" value=""></textarea>
-              <small><b>Nota:</b> Se recomienda no colocar más de (Definir) caracteres</small>
+              <label>Ingrese Precio:</label>
+              <input type="text" class="form-control" name="producto_precio" required>
             </div>
+            <div class="section-input">
+              <label>Ingrese Descuento</label>
+              <input type="text" class="form-control" name="producto_descuento" required>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+              <div class="section-input">
+                <label>Elija la Categoría del Producto</label>
+                <?= $listaProductos; ?>
+              </div>
+          </div>
             
             <!-- hidden obj -->
             <div class="section-input">
@@ -141,28 +154,6 @@
         </div>
       </form>
     </div>
-
-    <footer>
-        <section class="view-desactivados" id="view-desactivados">
-            <div class="container table-des">
-                <form action="<?= URL; ?>" method="post">
-                    <div class="section-table">
-                      <?= $htmlDinamicList_2; ?>
-                    </div>
-
-                    <div class="btn-section text-right">
-                        <button type="submit" class="btn btn-success" name="btn-op-2" value="activar-exe/<?= $btn_op; ?>/<?= $proyecto_id; ?>/<?= $page; ?>">
-                          <span class="glyphicon glyphicon-ok" aria-hidden="true" style="font-size:14px;"></span>
-                          Activar
-                        </button>
-                        <button type="button" class="btn btn-danger" id="close-view-des">
-                          Cerrar
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </footer>
     <script src="app/js/app.js"></script>
   </body>
 

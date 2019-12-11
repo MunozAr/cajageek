@@ -118,7 +118,7 @@
 
             <div class="section-input">
               <label>Detalle del Tipo de artículo:</label>
-              <textarea id="summernote1" type="text" class="form-control prod-txta" name="tipo_detalle" value=""></textarea>
+              <textarea id="tipoDetalle" type="text" class="form-control prod-txta" name="tipo_detalle" value=""></textarea>
               <small><b>Nota:</b> Se recomienda no colocar más de (Definir) caracteres</small>
             </div>
             <!-- hidden obj -->
